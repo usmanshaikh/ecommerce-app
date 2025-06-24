@@ -1,0 +1,28 @@
+export const MESSAGES = {
+  USER_REGISTERED: 'User registered successfully.',
+  LOGIN_SUCCESS: 'Login successful.',
+  LOGOUT_SUCCESS: 'Logout successful.',
+  TOKENS_REFRESHED_SUCCESS: 'Tokens refreshed successfully. New access and refresh tokens generated.',
+  PASSWORD_RESET_EMAIL_SENT: 'Password reset email sent successfully.',
+  PASSWORD_RESET_SUCCESS: 'Password has been reset successfully.',
+  VERIFICATION_EMAIL_SENT: 'Verification email sent successfully.',
+  EMAIL_VERIFIED_SUCCESS: 'Email has been verified successfully.',
+  INVALID_TOKEN: 'Invalid or expired token.',
+  AUTH_TOKEN_REQ: 'Authorization token required',
+  AUTH_HEADER_REQUIRED: 'Authorization header required.',
+  INTERNAL_SERVER_ERROR: 'Internal Server Error.',
+  MAX_REQUESTS_REACHED: 'Too many requests from this IP, please try again later.',
+  VALIDATION_ERROR: 'Validation error.',
+  ENTER_VALID_EMAIL: 'Please enter a valid email address.',
+  PASSWORD_REQUIREMENTS: 'Password must contain at least one letter and one number.',
+  EMAIL_ALREADY_TAKEN: 'Email already taken.',
+  USER_NOT_FOUND: 'User not found.',
+  INCORRECT_EMAIL_OR_PASSWORD: 'Incorrect email or password.',
+  INVALID_REFRESH_TOKEN: 'Refresh token is invalid.',
+  EXPIRED_REFRESH_TOKEN: 'Invalid or expired refresh token.',
+
+  // User-related messages
+  USER_DATA_RETRIEVED: 'User data retrieved successfully.',
+  USER_UPDATED: 'User updated successfully.',
+  USER_DELETED: 'User deleted successfully.',
+};
