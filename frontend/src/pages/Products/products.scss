@@ -1,0 +1,59 @@
+@use '../../assets/scss/mixin_variables.scss' as *;
+@use 'sass:color';
+
+.product-list-page {
+  margin: 40px 0;
+}
+
+.product-detail-page {
+  padding: 32px 16px;
+
+  .product-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .product-title {
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .product-price {
+    font-weight: 500;
+    color: #ed6335;
+    margin-bottom: 16px;
+  }
+
+  .product-description {
+    color: #6c6c6c;
+    margin-bottom: 24px;
+  }
+
+  .add-to-cart-btn {
+    background-color: $primary;
+    color: $white;
+  }
+
+  .wishlist-btn {
+    min-width: 150px;
+    color: #000;
+    border-color: #000;
+
+    &:hover {
+      border-color: #f97316;
+      color: #f97316;
+    }
+
+    &.active {
+      color: #f97316;
+      border-color: #f97316;
+    }
+  }
+
+  .related-title {
+    font-weight: 600;
+    margin: 24px 0 12px;
+  }
+}

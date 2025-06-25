@@ -48,7 +48,7 @@ const baloo2ExtraBold = {
 
 const theme = createTheme({
   typography: {
-    fontFamily: ['Baloo 2', 'Roboto'].join(','),
+    fontFamily: ['"Baloo 2"', 'Roboto'].join(','),
   },
   components: {
     MuiCssBaseline: {
