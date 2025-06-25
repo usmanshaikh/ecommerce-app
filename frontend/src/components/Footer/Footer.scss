@@ -1,0 +1,78 @@
+@use '../../assets/scss/mixin_variables.scss' as *;
+@use 'sass:color';
+
+.footer-container {
+  position: relative;
+  margin-top: 150px;
+  padding-top: 50px;
+  background-color: $golden;
+  &::before {
+    content: '';
+    width: 100%;
+    top: -120px;
+    z-index: -1;
+    height: 130px;
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../../assets/img/footerBg.png');
+  }
+  .footer-top {
+    padding-bottom: 20px;
+  }
+  .footer-logo {
+    width: 220px;
+  }
+  .mailto-link {
+    color: $black;
+    font-weight: bold;
+    text-decoration: none;
+    @include transition(0.3s);
+    &:hover {
+      color: $primary;
+    }
+  }
+  .footer-text {
+    margin: 15px 0;
+  }
+  .social-list {
+    display: flex;
+    margin: 10px 0;
+  }
+  .footer-list-title {
+    font-weight: 700;
+  }
+  .footer-link {
+    margin: 4px 0;
+    color: $black;
+    text-decoration: none;
+    display: inline-block;
+    @include transition(0.3s);
+    &:hover {
+      color: $primary;
+    }
+  }
+  .footer-bottom {
+    padding: 15px 0;
+    border-top: 1px solid color.adjust($golden, $lightness: -8%);
+  }
+  .copyright-link {
+    color: $white;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    @include transition(0.3s);
+    &:hover {
+      color: $primary;
+    }
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  p {
+    padding: 0;
+    margin: 0;
+  }
+}

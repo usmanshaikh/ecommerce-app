@@ -1,0 +1,11 @@
+@use '../../assets/scss/mixin_variables.scss' as *;
+
+.header-container {
+  .header-app-bar {
+    padding: 10px 0;
+    background-color: $white;
+  }
+  .header-logo {
+    width: 150px;
+  }
+}

@@ -7,17 +7,19 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Images from '../../assets/img';
-import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Drawer from '@mui/material/Drawer';
+import { Link } from 'react-router-dom';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import './Header.scss';
 
 interface Props {
   /**
@@ -29,8 +31,8 @@ interface Props {
 
 const drawerWidth = 240;
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['Home', 'Shop', 'About Us'];
+const settings = ['Profile', 'Account', 'Logout'];
 
 function ResponsiveAppBar(props: Props) {
   const { window } = props;
@@ -53,10 +55,6 @@ function ResponsiveAppBar(props: Props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
-      </Typography>
-      <Divider />
       <List>
         {pages.map((item) => (
           <ListItem key={item} disablePadding>
@@ -65,33 +63,26 @@ function ResponsiveAppBar(props: Props) {
             </ListItemButton>
           </ListItem>
         ))}
+        <ListItem disablePadding>
+          <ListItemButton sx={{ textAlign: 'center' }}>
+            <ListItemText primary="Logout" />
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <AppBar position="static">
+    <Box sx={{ display: 'flex' }} className="header-container">
+      <AppBar color="transparent" position="fixed" className="header-app-bar">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
-              sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}>
-              <img src={Images.Logo} className="" alt="React logo" />
-            </Typography>
-
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+              <Link to="/">
+                <img src={Images.Logo} className="header-logo" alt="logo" />
+              </Link>
+            </Box>
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' } }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -102,49 +93,35 @@ function ResponsiveAppBar(props: Props) {
                 <MenuIcon />
               </IconButton>
             </Box>
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
-              sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}>
-              LOGO
-            </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <Box sx={{ mr: 2, display: { xs: 'flex', sm: 'none' }, flexGrow: 1 }}>
+              <Link to="/">
+                <img src={Images.Logo} className="header-logo" alt="logo" />
+              </Link>
+            </Box>
+            <Box sx={{ ml: 3, flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
               {pages.map((page) => (
-                <Button key={page} sx={{ my: 2, color: 'white', display: 'block' }}>
+                <Button key={page} sx={{ fontSize: 18, mx: 1, color: '#000000', display: 'block', fontWeight: 600 }}>
                   {page}
                 </Button>
               ))}
             </Box>
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1, mx: 1, color: '#000000' }}>
+                <PersonOutlineOutlinedIcon />
+              </IconButton>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1, mx: 1, color: '#000000' }}>
+                <FavoriteBorderIcon />
+              </IconButton>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1, mx: 1, color: '#000000' }}>
+                <ShoppingCartOutlinedIcon />
+              </IconButton>
               <Menu
                 sx={{ mt: '45px' }}
                 id="menu-appbar"
                 anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                 keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}>
                 {settings.map((setting) => (
@@ -163,9 +140,7 @@ function ResponsiveAppBar(props: Props) {
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
+          ModalProps={{ keepMounted: true }}
           sx={{
             display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
