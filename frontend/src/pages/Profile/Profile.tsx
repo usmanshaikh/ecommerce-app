@@ -142,7 +142,7 @@ const Profile = () => {
             />
           </Grid>
           <Grid size={{ xs: 12 }}>
-            <CustomButton type="submit" variantType="fill">
+            <CustomButton fullWidth type="submit" variantType="fill">
               Save Changes
             </CustomButton>
           </Grid>

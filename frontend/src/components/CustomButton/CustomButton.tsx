@@ -6,9 +6,10 @@ interface CustomButtonProps extends ButtonProps {
   variantType?: 'fill' | 'white';
 }
 
-const CustomButton = ({ variantType = 'fill', className = '', ...props }: CustomButtonProps) => {
+const CustomButton = ({ variantType = 'fill', className = '', fullWidth, ...props }: CustomButtonProps) => {
   const btnClass = variantType === 'white' ? 'white-btn' : 'fill-btn';
-  return <Button fullWidth className={`${btnClass} ${className}`} {...props} />;
+
+  return <Button {...props} className={`${btnClass} ${className}`} {...(fullWidth && { fullWidth })} />;
 };
 
 export default CustomButton;
