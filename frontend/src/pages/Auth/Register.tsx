@@ -1,12 +1,14 @@
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, TextField, Typography } from '@mui/material';
 import { MSG, ROUTES } from '../../utils/constants';
+import { CustomButton } from '../../components';
 import './Auth.scss';
 
 const validationSchema = yup.object({
-  name: yup.string().required(MSG.VALIDATION.NAME.REQUIRED),
+  firstName: yup.string().required(MSG.VALIDATION.NAME.FIRST),
+  lastName: yup.string().required(MSG.VALIDATION.NAME.LAST),
   email: yup.string().email(MSG.VALIDATION.EMAIL.INVALID).required(MSG.VALIDATION.EMAIL.REQUIRED),
   password: yup
     .string()
@@ -17,7 +19,8 @@ const validationSchema = yup.object({
 const Register = () => {
   const formik = useFormik({
     initialValues: {
-      name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
     },
@@ -48,14 +51,28 @@ const Register = () => {
               <TextField
                 fullWidth
                 variant="standard"
-                id="name"
-                name="name"
-                label="Name"
+                id="firstName"
+                name="firstName"
+                label="First Name"
                 autoComplete="off"
-                value={formik.values.name}
+                value={formik.values.firstName}
                 onChange={formik.handleChange}
-                error={formik.touched.name && Boolean(formik.errors.name)}
-                helperText={formik.touched.name && formik.errors.name}
+                error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                helperText={formik.touched.firstName && formik.errors.firstName}
+              />
+            </Box>
+            <Box sx={{ my: 2 }}>
+              <TextField
+                fullWidth
+                variant="standard"
+                id="lastName"
+                name="lastName"
+                label="Last Name"
+                autoComplete="off"
+                value={formik.values.lastName}
+                onChange={formik.handleChange}
+                error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+                helperText={formik.touched.lastName && formik.errors.lastName}
               />
             </Box>
             <Box sx={{ my: 2 }}>
@@ -87,15 +104,15 @@ const Register = () => {
               />
             </Box>
             <Box>
-              <Button className="fill-btn" fullWidth sx={{ mt: 2 }} type="submit">
+              <CustomButton type="submit" variantType="fill" fullWidth sx={{ mt: 2 }}>
                 Register
-              </Button>
+              </CustomButton>
             </Box>
             <Box>
               <span style={{ textAlign: 'center', display: 'block' }}>Already have an account?</span>
-              <Button className="white-btn" fullWidth sx={{ mt: 2 }} onClick={() => navigate(`/${ROUTES.LOGIN}`)}>
+              <CustomButton variantType="white" fullWidth sx={{ mt: 2 }} onClick={() => navigate(`/${ROUTES.LOGIN}`)}>
                 Login
-              </Button>
+              </CustomButton>
             </Box>
           </form>
         </Box>

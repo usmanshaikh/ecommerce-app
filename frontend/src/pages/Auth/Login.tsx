@@ -1,8 +1,9 @@
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, TextField, Typography } from '@mui/material';
 import { MSG, ROUTES } from '../../utils/constants';
+import { CustomButton } from '../../components';
 import './Auth.scss';
 
 const validationSchema = yup.object({
@@ -71,15 +72,15 @@ const Login = () => {
               />
             </Box>
             <Box>
-              <Button className="fill-btn" fullWidth sx={{ mt: 2 }} type="submit">
+              <CustomButton type="submit" variantType="fill" fullWidth sx={{ mt: 2 }}>
                 Login
-              </Button>
+              </CustomButton>
             </Box>
             <Box>
               <span style={{ textAlign: 'center', display: 'block' }}>Don't have an account?</span>
-              <Button className="white-btn" fullWidth sx={{ mt: 2 }} onClick={() => navigate(`/${ROUTES.REGISTER}`)}>
+              <CustomButton variantType="white" fullWidth sx={{ mt: 2 }} onClick={() => navigate(`/${ROUTES.REGISTER}`)}>
                 Create
-              </Button>
+              </CustomButton>
             </Box>
           </form>
         </Box>
