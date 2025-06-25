@@ -1,7 +1,58 @@
+@use '../../assets/scss/mixin_variables.scss' as *;
+@use 'sass:color';
+
 .home-page {
-  .card-img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
+  .card-wrapper {
+    padding: 2px;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #ededed;
+    .card-img {
+      width: 100%;
+      height: 300px;
+      display: block;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+    &:hover .card-img {
+      transform: scale(1.05);
+    }
+  }
+  .card-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .home-banner-wrapper {
+    position: relative;
+    .banner-content {
+      top: 50%;
+      left: 5%;
+      width: 60%;
+      color: $white;
+      position: absolute;
+      transform: translateY(-50%);
+    }
+    .shop-now-btn {
+      color: $black;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 50px;
+      text-transform: none;
+      background-color: $white;
+      @include transition(0.3s);
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        background-color: color.adjust($white, $lightness: -5%);
+      }
+      &:active {
+        transform: scale(0.98);
+      }
+    }
   }
 }
