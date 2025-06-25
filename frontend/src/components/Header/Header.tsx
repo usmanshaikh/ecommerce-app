@@ -1,40 +1,35 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Container,
+  Button,
+  MenuItem,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Drawer,
+} from '@mui/material';
+import { Menu as MenuIcon, PersonOutlineOutlined, ShoppingCartOutlined, FavoriteBorder } from '@mui/icons-material';
+import { Link, useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../utils/constants';
 import Images from '../../assets/img';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import Drawer from '@mui/material/Drawer';
-import { Link } from 'react-router-dom';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import './Header.scss';
 
 interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window?: () => Window;
 }
 
 const drawerWidth = 240;
 
-const pages = ['Home', 'Shop', 'About Us'];
-const settings = ['Profile', 'Account', 'Logout'];
+const Header = (props: Props) => {
+  const navigate = useNavigate();
 
-function ResponsiveAppBar(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -51,20 +46,35 @@ function ResponsiveAppBar(props: Props) {
     setAnchorElUser(null);
   };
 
+  const handleGoTo = (path: string) => {
+    navigate(`/${path}`);
+    handleCloseUserMenu();
+  };
+
+  const handleLogout = () => {
+    navigate(`/${ROUTES.LOGIN}`);
+    handleCloseUserMenu();
+  };
+
   const container = window !== undefined ? () => window().document.body : undefined;
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <List>
-        {pages.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
         <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }}>
+          <ListItemButton component={Link} to="/" sx={{ textAlign: 'center' }}>
+            <ListItemText primary="Home" />
+          </ListItemButton>
+        </ListItem>
+
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to={`/${ROUTES.PRODUCTS}`} sx={{ textAlign: 'center' }}>
+            <ListItemText primary="Shop" />
+          </ListItemButton>
+        </ListItem>
+
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleLogout} sx={{ textAlign: 'center' }}>
             <ListItemText primary="Logout" />
           </ListItemButton>
         </ListItem>
@@ -99,21 +109,26 @@ function ResponsiveAppBar(props: Props) {
               </Link>
             </Box>
             <Box sx={{ ml: 3, flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>
-              {pages.map((page) => (
-                <Button key={page} sx={{ fontSize: 18, mx: 1, color: '#000000', display: 'block', fontWeight: 600 }}>
-                  {page}
-                </Button>
-              ))}
+              <Button
+                sx={{ fontSize: 18, mx: 1, color: '#000000', display: 'block', fontWeight: 600 }}
+                onClick={() => navigate('/')}>
+                Home
+              </Button>
+              <Button
+                sx={{ fontSize: 18, mx: 1, color: '#000000', display: 'block', fontWeight: 600 }}
+                onClick={() => navigate(`/${ROUTES.PRODUCTS}`)}>
+                Shop
+              </Button>
             </Box>
             <Box sx={{ flexGrow: 0 }}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 1, mx: 1, color: '#000000' }}>
-                <PersonOutlineOutlinedIcon />
+                <PersonOutlineOutlined />
               </IconButton>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1, mx: 1, color: '#000000' }}>
-                <FavoriteBorderIcon />
+              <IconButton onClick={() => navigate(`/${ROUTES.WISHLIST}`)} sx={{ p: 1, mx: 1, color: '#000000' }}>
+                <FavoriteBorder />
               </IconButton>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1, mx: 1, color: '#000000' }}>
-                <ShoppingCartOutlinedIcon />
+              <IconButton onClick={() => navigate(`/${ROUTES.CART}`)} sx={{ p: 1, mx: 1, color: '#000000' }}>
+                <ShoppingCartOutlined />
               </IconButton>
               <Menu
                 sx={{ mt: '45px' }}
@@ -124,11 +139,15 @@ function ResponsiveAppBar(props: Props) {
                 transformOrigin={{ vertical: 'top', horizontal: 'right' }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}>
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
-                  </MenuItem>
-                ))}
+                <MenuItem onClick={() => handleGoTo(ROUTES.PROFILE)}>
+                  <Typography sx={{ textAlign: 'center' }}>Profile</Typography>
+                </MenuItem>
+                <MenuItem onClick={() => handleGoTo(ROUTES.ORDERS)}>
+                  <Typography sx={{ textAlign: 'center' }}>Orders</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>
+                  <Typography sx={{ textAlign: 'center' }}>Logout</Typography>
+                </MenuItem>
               </Menu>
             </Box>
           </Toolbar>
@@ -150,5 +169,5 @@ function ResponsiveAppBar(props: Props) {
       </nav>
     </Box>
   );
-}
-export default ResponsiveAppBar;
+};
+export default Header;

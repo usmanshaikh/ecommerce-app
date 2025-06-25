@@ -1,7 +1,14 @@
-import React from 'react';
+import { Box } from '@mui/material';
+import Images from '../../assets/img';
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <Box>
+      <Box>
+        <img src={Images.Banner} className="home-banner" alt="React logo" />
+      </Box>
+    </Box>
+  );
 };
 
 export default Home;
