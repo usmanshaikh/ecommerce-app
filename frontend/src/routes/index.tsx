@@ -13,6 +13,8 @@ import {
   Home,
   Wishlist,
   AddProduct,
+  CheckoutSuccess,
+  CheckoutFailed,
 } from '@pages';
 
 const AppRoutes = () => {
@@ -31,6 +33,8 @@ const AppRoutes = () => {
         {/* <Route element={<ProtectedRoute />}> */}
         <Route path={`/${ROUTES.CART}`} element={<Cart />} />
         <Route path={`/${ROUTES.CHECKOUT}`} element={<Checkout />} />
+        <Route path={`/${ROUTES.CHECKOUT_SUCCESS}`} element={<CheckoutSuccess />} />
+        <Route path={`/${ROUTES.CHECKOUT_FAILED}`} element={<CheckoutFailed />} />
         <Route path={`/${ROUTES.ORDERS}`} element={<Orders />} />
         <Route path={`/${ROUTES.WISHLIST}`} element={<Wishlist />} />
         <Route path={`/${ROUTES.PROFILE}`} element={<Profile />} />

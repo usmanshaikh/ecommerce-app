@@ -3,6 +3,8 @@ export const ROUTE_PATHS = {
   REGISTER: 'register',
   CART: 'cart',
   CHECKOUT: 'checkout',
+  CHECKOUT_SUCCESS: 'checkout-success',
+  CHECKOUT_FAILED: 'checkout-failed',
   ORDERS: 'orders',
   WISHLIST: 'wishlist',
   PRODUCTS: 'products',

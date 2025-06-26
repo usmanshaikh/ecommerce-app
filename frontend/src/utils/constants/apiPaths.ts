@@ -1,0 +1,17 @@
+export const API_PATHS = {
+  REGISTER: 'auth/register',
+  LOGIN: 'auth/login',
+  LOGOUT: 'auth/logout',
+  REFRESH_TOKENS: 'auth/refresh-tokens',
+  PROFILE: 'profile',
+  PRODUCT: 'product',
+  BEST_SELLERS: 'product/best-sellers',
+  RECOMMENDED: 'product/recommended',
+  UPLOAD_IMAGE: 'product/upload-image',
+  CART: 'cart',
+  CART_REMOVE: 'cart/remove',
+  CART_ADD: 'cart/add',
+  CHECKOUT_STRIPE_SESSION: 'checkout/stripe-session',
+  CHECKOUT_CONFIRM_ORDER: 'checkout/confirm-order',
+  ORDER: 'order',
+};
