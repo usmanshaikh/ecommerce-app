@@ -11,11 +11,12 @@ import {
   FormControl,
   FormControlLabel,
   Checkbox,
+  Button,
 } from '@mui/material';
 import * as yup from 'yup';
-import axios from 'axios';
 import { CustomButton } from '../../components';
 import { MSG as MESSAGE } from '../../utils/constants';
+import { useNavigate } from 'react-router-dom';
 
 const MSG = MESSAGE.VALIDATION.PRODUCT;
 const validationSchema = yup.object({
@@ -32,6 +33,8 @@ const validationSchema = yup.object({
 const checkboxStyle = { color: '#000', '&.Mui-checked': { color: '#000' } };
 
 const AddProduct = () => {
+  const navigate = useNavigate();
+
   const [image, setImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
@@ -51,7 +54,7 @@ const AddProduct = () => {
   });
 
   return (
-    <Box maxWidth="lg" mx="auto" p={3}>
+    <Box maxWidth="lg" mx="auto" p={3} pb={15}>
       <Typography variant="h4" fontWeight={600} gutterBottom>
         Add Product
       </Typography>
@@ -169,19 +172,35 @@ const AddProduct = () => {
             <input
               accept="image/*"
               type="file"
+              id="upload-image"
+              style={{ display: 'none' }}
               onChange={(e) => {
-                const file = e.target.files?.[0] ?? null;
+                const file = e.target.files?.[0];
                 if (file) {
                   setImage(file);
                   setImagePreview(URL.createObjectURL(file));
                 }
               }}
             />
-            {imagePreview && <img src={imagePreview} alt="Preview" height={100} />}
+
+            <label htmlFor="upload-image">
+              <Button variant="outlined" component="span">
+                Upload Image
+              </Button>
+            </label>
+
+            {imagePreview && (
+              <Box mt={2}>
+                <img src={imagePreview} alt="Preview" height={100} />
+              </Box>
+            )}
           </Grid>
           <Grid size={{ xs: 12 }}>
             <CustomButton fullWidth type="submit" variantType="fill">
               Add Product
+            </CustomButton>
+            <CustomButton fullWidth variantType="white" onClick={() => navigate(`/`)}>
+              Home
             </CustomButton>
           </Grid>
         </Grid>
