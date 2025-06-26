@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-// import { ProtectedRoute, GuestRoute } from '../components';
-import { ROUTES } from '../utils/constants';
+// import { ProtectedRoute, GuestRoute } from '@components';
+import { ROUTES } from '@utils/constants';
 import {
   Login,
   Register,
@@ -13,7 +13,7 @@ import {
   Home,
   Wishlist,
   AddProduct,
-} from '../pages';
+} from '@pages';
 
 const AppRoutes = () => {
   return (

@@ -1,5 +1,5 @@
 import { Box, Typography, TextField, Grid, Divider, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-import { CustomButton } from '../../components';
+import { CustomButton } from '@components';
 
 const Checkout = () => {
   return (

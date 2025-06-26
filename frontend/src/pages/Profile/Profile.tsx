@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Box, Grid, TextField, Typography } from '@mui/material';
-import { CustomButton } from '../../components';
+import { CustomButton } from '@components';
 
 const validationSchema = yup.object({
   firstName: yup.string().required('First name is required'),

@@ -14,8 +14,8 @@ import {
   Button,
 } from '@mui/material';
 import * as yup from 'yup';
-import { CustomButton } from '../../components';
-import { MSG as MESSAGE } from '../../utils/constants';
+import { CustomButton } from '@components';
+import { MSG as MESSAGE } from '@utils/constants';
 import { useNavigate } from 'react-router-dom';
 
 const MSG = MESSAGE.VALIDATION.PRODUCT;

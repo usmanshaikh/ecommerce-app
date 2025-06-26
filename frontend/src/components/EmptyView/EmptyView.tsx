@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../utils/constants';
-import Images from '../../assets/img';
-import CustomButton from '../CustomButton/CustomButton';
+import { ROUTES } from '@utils/constants';
+import Images from '@assets/img';
+import CustomButton from '@components/CustomButton/CustomButton';
 import './EmptyView.scss';
 
 interface EmptyViewProps {

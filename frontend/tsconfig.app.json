@@ -21,7 +21,36 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@api": ["src/api/index"],
+      "@api/*": ["src/api/*"],
+
+      "@assets": ["src/assets/index"],
+      "@assets/*": ["src/assets/*"],
+
+      "@components": ["src/components/index"],
+      "@components/*": ["src/components/*"],
+
+      "@hooks": ["src/hooks/index"],
+      "@hooks/*": ["src/hooks/*"],
+
+      "@pages": ["src/pages/index"],
+      "@pages/*": ["src/pages/*"],
+
+      "@routes": ["src/routes/index"],
+      "@routes/*": ["src/routes/*"],
+
+      "@store": ["src/store/index"],
+      "@store/*": ["src/store/*"],
+
+      "@utils": ["src/utils/index"],
+      "@utils/*": ["src/utils/*"],
+
+      "@theme": ["src/theme.ts"]
+    }
   },
   "include": ["src"]
 }

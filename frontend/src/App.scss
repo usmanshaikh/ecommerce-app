@@ -20,23 +20,20 @@ body {
 }
 
 body {
+  &:focus-visible {
+    outline-offset: 4px;
+  }
   &::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 10px;
   }
   &::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background: rgba(225, 225, 225, 0.2);
+    background-color: hsl(0, 0%, 98%);
   }
   &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: rgba(225, 225, 225, 0.2);
+    background-color: hsl(0, 0%, 80%);
   }
   &::-webkit-scrollbar-thumb:hover {
-    background: rgba(225, 225, 225, 0.4);
-  }
-  &::-webkit-scrollbar-thumb:active {
-    background: rgba(225, 225, 225, 0.4);
+    background-color: hsl(0, 0%, 70%);
   }
 }
 

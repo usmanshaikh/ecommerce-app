@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import { Instagram, Pinterest, FacebookOutlined } from '@mui/icons-material';
 import { Grid, Container, Box } from '@mui/material';
-import Images from '../../assets/img';
+import Images from '@assets/img';
 import './Footer.scss';
 
 const Footer = () => {

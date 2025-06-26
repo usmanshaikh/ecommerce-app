@@ -1,5 +1,5 @@
 import { Box, Typography, Grid, Card, CardContent, CardMedia, Divider, Button } from '@mui/material';
-import Images from '../../assets/img';
+import Images from '@assets/img';
 
 const dummyOrders = [
   {

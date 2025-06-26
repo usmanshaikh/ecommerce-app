@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Box, Grid, Typography, Button } from '@mui/material';
 import { FavoriteBorder, Favorite, ShoppingCart } from '@mui/icons-material';
-import { ProductCard } from '../../components';
-import Images from '../../assets/img';
+import { ProductCard } from '@components';
+import Images from '@assets/img';
 
 const ProductDetail = () => {
   const [isWishlisted, setIsWishlisted] = useState(false);

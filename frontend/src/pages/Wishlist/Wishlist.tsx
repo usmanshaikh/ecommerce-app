@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography, Grid } from '@mui/material';
-import { ProductCard } from '../../components';
-import { ROUTES } from '../../utils/constants';
-import Images from '../../assets/img';
+import { ProductCard } from '@components';
+import { ROUTES } from '@utils/constants';
+import Images from '@assets/img';
 
 const Wishlist = () => {
   const navigate = useNavigate();

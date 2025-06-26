@@ -1,8 +1,8 @@
 import { Box, Typography, Grid, Divider } from '@mui/material';
-import { CustomButton, EmptyView, ProductCard } from '../../components';
-import { ROUTES } from '../../utils/constants';
+import { CustomButton, EmptyView, ProductCard } from '@components';
+import { ROUTES } from '@utils/constants';
 import { useNavigate } from 'react-router-dom';
-import Images from '../../assets/img';
+import Images from '@assets/img';
 
 const Cart = () => {
   const navigate = useNavigate();

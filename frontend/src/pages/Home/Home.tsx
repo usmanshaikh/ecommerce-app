@@ -1,8 +1,8 @@
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import Images from '../../assets/img';
-import { ProductCard } from '../../components';
-import { ROUTES } from '../../utils/constants';
+import Images from '@assets/img';
+import { ProductCard } from '@components';
+import { ROUTES } from '@utils/constants';
 import './Home.scss';
 
 const Home = () => {

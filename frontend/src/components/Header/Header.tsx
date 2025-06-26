@@ -18,10 +18,10 @@ import {
 } from '@mui/material';
 import { Menu as MenuIcon, PersonOutlineOutlined, ShoppingCartOutlined, FavoriteBorder } from '@mui/icons-material';
 import { Link, useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../utils/constants';
-import type { RootState } from '../../store';
-import { useAppSelector } from '../../hooks';
-import Images from '../../assets/img';
+import { ROUTES } from '@utils/constants';
+import type { RootState } from '@store';
+import { useAppSelector } from '@hooks';
+import Images from '@assets/img';
 import './Header.scss';
 
 interface Props {

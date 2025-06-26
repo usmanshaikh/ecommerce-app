@@ -2,8 +2,8 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { Box, TextField, Typography } from '@mui/material';
-import { MSG, ROUTES } from '../../utils/constants';
-import { CustomButton } from '../../components';
+import { MSG, ROUTES } from '@utils/constants';
+import { CustomButton } from '@components';
 import './Auth.scss';
 
 const validationSchema = yup.object({

@@ -1,7 +1,7 @@
 import { Snackbar, Alert } from '@mui/material';
-import { hideSnackbar } from '../../store/slices/snackbarSlice';
-import type { RootState } from '../../store';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { hideSnackbar } from '@store/slices/snackbarSlice';
+import type { RootState } from '@store';
+import { useAppDispatch, useAppSelector } from '@hooks';
 import './SnackbarAlert.scss';
 
 const SnackbarAlert = () => {

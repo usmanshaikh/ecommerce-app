@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { Box, Container, Grid } from '@mui/material';
-import { ProductCard } from '../../components';
-import { ROUTES } from '../../utils/constants';
+import { ProductCard } from '@components';
+import { ROUTES } from '@utils/constants';
 import SidebarFilters from './SidebarFilters';
 import SortBar from './SortBar';
-import Images from '../../assets/img';
+import Images from '@assets/img';
 import './products.scss';
 
 const dummyProducts = new Array(8).fill(null).map((_, i) => ({

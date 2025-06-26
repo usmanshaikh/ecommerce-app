@@ -1,8 +1,8 @@
-import Baloo2Bold from './assets/fonts/Baloo2-Bold.woff2';
-import Baloo2ExtraBold from './assets/fonts/Baloo2-ExtraBold.woff2';
-import Baloo2Medium from './assets/fonts/Baloo2-Medium.woff2';
-import Baloo2Regular from './assets/fonts/Baloo2-Regular.woff2';
-import Baloo2SemiBold from './assets/fonts/Baloo2-SemiBold.woff2';
+import Baloo2Bold from '@assets/fonts/Baloo2-Bold.woff2';
+import Baloo2ExtraBold from '@assets/fonts/Baloo2-ExtraBold.woff2';
+import Baloo2Medium from '@assets/fonts/Baloo2-Medium.woff2';
+import Baloo2Regular from '@assets/fonts/Baloo2-Regular.woff2';
+import Baloo2SemiBold from '@assets/fonts/Baloo2-SemiBold.woff2';
 
 import { createTheme } from '@mui/material/styles';
 

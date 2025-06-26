@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Footer, Header, SnackbarAlert, Loader } from './components';
-import { ROUTES } from './utils/constants';
-import AppRoutes from './routes';
+import { Footer, Header, SnackbarAlert, Loader } from '@components';
+import { ROUTES } from '@utils/constants';
+import AppRoutes from '@routes';
 import './App.scss';
 
 const App = () => {
