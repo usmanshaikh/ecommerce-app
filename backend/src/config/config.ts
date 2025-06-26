@@ -23,6 +23,12 @@ const envVarsSchema = Joi.object({
   SMTP_PASSWORD: Joi.string().required().description('password for email server'),
   EMAIL_FROM: Joi.string().required().description('the from field in the emails sent by the app'),
   ORIGIN_URL: Joi.string().required().description('Origin URL for email template link'),
+
+  // AWS configuration
+  AWS_ACCESS_KEY_ID: Joi.string().required().description('AWS access key ID'),
+  AWS_SECRET_ACCESS_KEY: Joi.string().default(6379).description('AWS secret access key'),
+  AWS_REGION: Joi.string().allow('').description('AWS region'),
+  AWS_S3_BUCKET_NAME: Joi.string().allow('').description('Aws S3 bucket name'),
 }).unknown();
 
 const { value: envVars, error } = envVarsSchema.prefs({ errors: { label: 'key' } }).validate(process.env);
@@ -52,6 +58,12 @@ export default {
     host: envVars.REDIS_HOST,
     port: envVars.REDIS_PORT,
     password: envVars.REDIS_PASSWORD,
+  },
+  aws: {
+    accessKeyId: envVars.AWS_ACCESS_KEY_ID,
+    secretAccessKey: envVars.AWS_SECRET_ACCESS_KEY,
+    region: envVars.AWS_REGION,
+    s3BucketName: envVars.AWS_S3_BUCKET_NAME,
   },
   email: {
     smtp: {

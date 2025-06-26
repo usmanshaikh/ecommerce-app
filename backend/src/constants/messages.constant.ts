@@ -21,8 +21,10 @@ export const MESSAGES = {
   INVALID_REFRESH_TOKEN: 'Refresh token is invalid.',
   EXPIRED_REFRESH_TOKEN: 'Invalid or expired refresh token.',
 
-  // Profile-related messages
   PROFILE_DATA_RETRIEVED: 'Profle data retrieved successfully.',
   PROFILE_UPDATED: 'Profle updated successfully.',
   PROFILE_DELETED: 'Profle deleted successfully.',
+
+  PRODUCT_NOT_FOUND: 'Product not found.',
+  PRODUCT_CREATED: 'Product created.',
 };
