@@ -7,4 +7,5 @@ export const ROUTE_PATHS = {
   WISHLIST: 'wishlist',
   PRODUCTS: 'products',
   PROFILE: 'profile',
+  ADD_PRODUCT: 'add-product',
 };

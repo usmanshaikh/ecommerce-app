@@ -1,7 +1,19 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 // import { ProtectedRoute, GuestRoute } from '../components';
 import { ROUTES } from '../utils/constants';
-import { Login, Register, Profile, ProductDetail, ProductList, Orders, Checkout, Cart, Home, Wishlist } from '../pages';
+import {
+  Login,
+  Register,
+  Profile,
+  ProductDetail,
+  ProductList,
+  Orders,
+  Checkout,
+  Cart,
+  Home,
+  Wishlist,
+  AddProduct,
+} from '../pages';
 
 const AppRoutes = () => {
   return (
@@ -24,6 +36,7 @@ const AppRoutes = () => {
         <Route path={`/${ROUTES.PROFILE}`} element={<Profile />} />
         <Route path={`/${ROUTES.PRODUCTS}`} element={<ProductList />} />
         <Route path={`/${ROUTES.PRODUCTS}/:id`} element={<ProductDetail />} />
+        <Route path={`/${ROUTES.ADD_PRODUCT}`} element={<AddProduct />} />
         {/* </Route> */}
 
         {/* Redirect all other paths to home */}
