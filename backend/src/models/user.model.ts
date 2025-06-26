@@ -23,15 +23,7 @@ const userSchema: Schema<userInterface.IUser> = new Schema(
       type: String,
       required: true,
       minlength: 6,
-      select: false, // Do not return password by default
-      validate: {
-        validator: function (value: string) {
-          // Regular expression to check if the password contains at least one letter and one number
-          const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
-          return passwordRegex.test(value);
-        },
-        message: MESSAGES.PASSWORD_REQUIREMENTS,
-      },
+      select: false,
     },
     name: {
       type: String,
