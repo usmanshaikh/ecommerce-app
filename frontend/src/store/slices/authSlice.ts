@@ -2,10 +2,7 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 interface UserData {
   _id: string;
-  firstName: string;
-  lastName: string;
   email: string;
-  isEmailVerified: boolean;
 }
 
 interface AuthState {
@@ -15,11 +12,15 @@ interface AuthState {
   isLoggedIn: boolean;
 }
 
+// Load from localStorage on init
+const accessToken = localStorage.getItem('accessToken');
+const refreshToken = localStorage.getItem('refreshToken');
+
 const initialState: AuthState = {
-  accessToken: null,
-  refreshToken: null,
+  accessToken,
+  refreshToken,
   user: null,
-  isLoggedIn: false,
+  isLoggedIn: !!accessToken,
 };
 
 const authSlice = createSlice({
@@ -30,6 +31,9 @@ const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
       state.isLoggedIn = true;
+
+      localStorage.setItem('accessToken', action.payload.accessToken);
+      localStorage.setItem('refreshToken', action.payload.refreshToken);
     },
     setUser(state, action: PayloadAction<UserData>) {
       state.user = action.payload;
@@ -40,6 +44,9 @@ const authSlice = createSlice({
       state.refreshToken = null;
       state.user = null;
       state.isLoggedIn = false;
+
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
     },
   },
 });

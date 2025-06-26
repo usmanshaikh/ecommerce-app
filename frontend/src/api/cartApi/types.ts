@@ -16,7 +16,7 @@ export interface CartResponse extends CartItem {}
 export interface RemoveCartItemResponse extends CartData {}
 
 export interface AddToCartPayload {
-  product: string;
+  productId: string;
   quantity: number;
 }
 

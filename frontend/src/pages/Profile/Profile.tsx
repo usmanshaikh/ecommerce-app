@@ -1,12 +1,15 @@
+import { useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Box, Grid, TextField, Typography } from '@mui/material';
 import { CustomButton } from '@components';
+import { profileApi } from '@api';
+import { useAppDispatch } from '@hooks/useReduxHooks';
+import { showSnackbar } from '@store/slices';
 
 const validationSchema = yup.object({
   firstName: yup.string().required('First name is required'),
   lastName: yup.string().required('Last name is required'),
-  email: yup.string().email('Enter a valid email').required('Email is required'),
   phone: yup
     .string()
     .matches(/^[6-9]\d{9}$/, 'Enter a valid phone number')
@@ -14,26 +17,72 @@ const validationSchema = yup.object({
   address: yup.string().required('Address is required'),
   city: yup.string().required('City is required'),
   state: yup.string().required('State is required'),
-  zipCode: yup.string().required('ZIP Code is required'),
+  country: yup.string().required('Country is required'),
+  pincode: yup.string().required('Pincode is required'),
 });
 
 const Profile = () => {
+  const dispatch = useAppDispatch();
+
   const formik = useFormik({
     initialValues: {
       firstName: '',
       lastName: '',
-      email: '',
       phone: '',
       address: '',
       city: '',
       state: '',
-      zipCode: '',
+      country: '',
+      pincode: '',
     },
     validationSchema,
-    onSubmit: (values) => {
-      console.log('Profile values:', values);
-    },
+    enableReinitialize: true,
+    onSubmit: (values) => updateProfile(values),
   });
+
+  const updateProfile = async (values: any) => {
+    try {
+      const payload = {
+        firstName: values.firstName,
+        lastName: values.lastName,
+        phone: values.phone,
+        address: {
+          street: values.address,
+          city: values.city,
+          state: values.state,
+          pincode: values.pincode,
+          country: values.country,
+        },
+      };
+      const res = await profileApi.updateMyProfile(payload);
+      if (res.data.status === 'success') {
+        dispatch(showSnackbar({ message: 'Profile updated successfully', type: 'success' }));
+      }
+    } catch (err) {
+      dispatch(showSnackbar({ message: 'Failed to update profile', type: 'error' }));
+    }
+  };
+
+  const fetchProfile = async () => {
+    const res = await profileApi.myProfile();
+    if (res.data.status === 'success') {
+      const data = res.data.data;
+      formik.setValues({
+        firstName: data.firstName || '',
+        lastName: data.lastName || '',
+        phone: data.phone || '',
+        address: data.address?.street || '',
+        city: data.address?.city || '',
+        state: data.address?.state || '',
+        country: data.address?.country || '',
+        pincode: data.address?.pincode || '',
+      });
+    }
+  };
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
 
   return (
     <Box maxWidth="lg" mx="auto" p={3}>
@@ -64,19 +113,6 @@ const Profile = () => {
               onChange={formik.handleChange}
               error={formik.touched.lastName && Boolean(formik.errors.lastName)}
               helperText={formik.touched.lastName && formik.errors.lastName}
-            />
-          </Grid>
-          <Grid size={{ xs: 12, md: 6 }}>
-            <TextField
-              fullWidth
-              id="email"
-              name="email"
-              label="Email"
-              type="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
             />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
@@ -132,13 +168,13 @@ const Profile = () => {
           <Grid size={{ xs: 12 }}>
             <TextField
               fullWidth
-              id="zipCode"
-              name="zipCode"
-              label="ZIP Code"
-              value={formik.values.zipCode}
+              id="pincode"
+              name="pincode"
+              label="pincode"
+              value={formik.values.pincode}
               onChange={formik.handleChange}
-              error={formik.touched.zipCode && Boolean(formik.errors.zipCode)}
-              helperText={formik.touched.zipCode && formik.errors.zipCode}
+              error={formik.touched.pincode && Boolean(formik.errors.pincode)}
+              helperText={formik.touched.pincode && formik.errors.pincode}
             />
           </Grid>
           <Grid size={{ xs: 12 }}>

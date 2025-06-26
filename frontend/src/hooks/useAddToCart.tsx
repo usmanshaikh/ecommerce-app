@@ -13,7 +13,7 @@ export const useAddToCart = () => {
       return;
     }
 
-    const payload = { product: item, quantity: 1 };
+    const payload = { productId: item._id, quantity: 1 };
     cartApi.addToCart(payload).then((res) => {
       if (res.data.status === 'success') {
         dispatch(showSnackbar({ message: 'Added to cart', type: 'success' }));

@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { Box, TextField, Typography } from '@mui/material';
 import { MSG, ROUTES } from '@utils/constants';
 import { CustomButton } from '@components';
+import { useAppDispatch } from '@hooks/useReduxHooks';
+import { showSnackbar } from '@store/slices/snackbarSlice';
+import type { RegisterPayload } from '@api/types';
+import authApi from '@api/authApi';
 import './Auth.scss';
 
 const validationSchema = yup.object({
@@ -17,6 +21,9 @@ const validationSchema = yup.object({
 });
 
 const Register = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -24,17 +31,18 @@ const Register = () => {
       email: '',
       password: '',
     },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      handleLogin();
-    },
+    validationSchema,
+    onSubmit: (values) => handleRegister(values),
   });
 
-  const navigate = useNavigate();
-
-  const handleLogin = () => {};
-
-  const handleRegister = () => {};
+  const handleRegister = async (values: RegisterPayload) => {
+    try {
+      await authApi.register(values);
+      navigate(`/${ROUTES.LOGIN}`);
+    } catch (err: any) {
+      dispatch(showSnackbar({ message: 'Registration failed', type: 'error' }));
+    }
+  };
 
   return (
     <Box className="register-page">
