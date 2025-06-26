@@ -25,16 +25,6 @@ const userSchema: Schema<userInterface.IUser> = new Schema(
       minlength: 6,
       select: false,
     },
-    firstName: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    lastName: {
-      type: String,
-      required: true,
-      trim: true,
-    },
     isEmailVerified: {
       type: Boolean,
       default: false,

@@ -1,5 +1,6 @@
 import * as authService from './auth.service';
 import * as userService from './user.service';
 import * as emailService from './email.service';
+import * as profileService from './profile.service';
 
-export { authService, userService, emailService };
+export { authService, userService, emailService, profileService };

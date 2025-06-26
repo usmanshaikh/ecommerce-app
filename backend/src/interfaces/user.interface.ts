@@ -4,8 +4,6 @@ export interface IUser extends Document {
   _id: Types.ObjectId;
   email: string;
   password: string;
-  firstName: string;
-  lastName: string;
   isEmailVerified: boolean;
   passwordChangedAt?: Date;
   createdAt: Date;
@@ -16,6 +14,5 @@ export interface IUser extends Document {
 export interface UserJwtDetails {
   _id: Types.ObjectId;
   email: string;
-  name: string;
   isEmailVerified: boolean;
 }

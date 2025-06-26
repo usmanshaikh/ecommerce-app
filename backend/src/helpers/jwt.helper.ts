@@ -14,7 +14,6 @@ export const generateToken = (
     sub: userDetails._id,
     userId: userDetails._id,
     email: userDetails.email,
-    name: userDetails.name,
     isEmailVerified: userDetails.isEmailVerified,
     iat: moment().unix(),
     exp: expires.unix(),

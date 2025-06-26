@@ -1,13 +1,16 @@
 import mongoose, { Schema, Model } from 'mongoose';
 import { profileInterface } from '../interfaces';
 
-const addressSchema = new Schema<profileInterface.IAddress>({
-  street: String,
-  city: String,
-  state: String,
-  country: String,
-  pincode: String,
-});
+const addressSchema = new Schema<profileInterface.IAddress>(
+  {
+    street: String,
+    city: String,
+    state: String,
+    country: String,
+    pincode: String,
+  },
+  { _id: false }, // don't generate an _id for each item
+);
 
 const profileSchema = new Schema<profileInterface.IProfile>(
   {

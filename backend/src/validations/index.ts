@@ -1,4 +1,4 @@
 import * as authValidation from './auth.validation';
-import * as userValidation from './user.validation';
+import * as profileValidation from './profile.validation';
 
-export { authValidation, userValidation };
+export { authValidation, profileValidation };
