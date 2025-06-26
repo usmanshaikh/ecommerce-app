@@ -2,5 +2,6 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import ProductCard from './ProductCard/ProductCard';
 import CustomButton from './CustomButton/CustomButton';
+import EmptyView from './EmptyView/EmptyView';
 
-export { Header, Footer, ProductCard, CustomButton };
+export { Header, Footer, ProductCard, CustomButton, EmptyView };

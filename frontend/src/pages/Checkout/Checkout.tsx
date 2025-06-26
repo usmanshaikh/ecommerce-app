@@ -3,8 +3,8 @@ import { CustomButton } from '../../components';
 
 const Checkout = () => {
   return (
-    <Box px={{ xs: 2, md: 4 }} py={4}>
-      <Typography variant="h5" fontWeight={600} mb={4}>
+    <Box maxWidth="lg" mx="auto" px={{ xs: 2, md: 4 }} py={4}>
+      <Typography variant="h4" fontWeight={600} gutterBottom>
         Checkout
       </Typography>
 

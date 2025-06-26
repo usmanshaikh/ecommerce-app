@@ -13,9 +13,9 @@ const Wishlist = () => {
   };
 
   return (
-    <Box px={{ xs: 2, md: 4 }} py={4} className="wishlist-page">
-      <Typography variant="h3" sx={{ fontWeight: 600, mb: 3, textAlign: 'center' }}>
-        Wishlist
+    <Box maxWidth="lg" mx="auto" px={{ xs: 2, md: 4 }} py={4} className="wishlist-page">
+      <Typography variant="h4" fontWeight={600} gutterBottom>
+        My Wishlist
       </Typography>
 
       <Grid container spacing={3}>

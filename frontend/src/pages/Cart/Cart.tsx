@@ -1,5 +1,5 @@
-import { Box, Typography, Grid, Button, Divider } from '@mui/material';
-import { CustomButton, ProductCard } from '../../components';
+import { Box, Typography, Grid, Divider } from '@mui/material';
+import { CustomButton, EmptyView, ProductCard } from '../../components';
 import { ROUTES } from '../../utils/constants';
 import { useNavigate } from 'react-router-dom';
 import Images from '../../assets/img';
@@ -8,8 +8,9 @@ const Cart = () => {
   const navigate = useNavigate();
 
   return (
-    <Box px={{ xs: 2, md: 4 }} py={4}>
-      <Typography variant="h5" fontWeight={600} mb={2}>
+    <Box maxWidth="lg" mx="auto" px={{ xs: 2, md: 4 }} py={4}>
+      {/* <EmptyView title="Your cart is empty" /> */}
+      <Typography variant="h4" fontWeight={600} gutterBottom>
         Shopping Cart
       </Typography>
 

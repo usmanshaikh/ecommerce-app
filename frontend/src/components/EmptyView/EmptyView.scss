@@ -1,0 +1,12 @@
+.empty-view-container {
+  text-align: center;
+  padding: 40px 20px;
+  color: #555;
+  .img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+}

@@ -78,8 +78,8 @@ const dummyOrders = [
 
 const Orders = () => {
   return (
-    <Box px={{ xs: 2, md: 4 }} py={4} className="order-history-page">
-      <Typography variant="h6" fontWeight={600} mb={3}>
+    <Box maxWidth="lg" mx="auto" px={{ xs: 2, md: 4 }} py={4} className="order-history-page">
+      <Typography variant="h4" fontWeight={600} gutterBottom>
         Order History
       </Typography>
 

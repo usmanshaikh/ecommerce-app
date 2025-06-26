@@ -36,7 +36,7 @@ const Profile = () => {
   });
 
   return (
-    <Box maxWidth="md" mx="auto" p={3}>
+    <Box maxWidth="lg" mx="auto" p={3}>
       <Typography variant="h4" fontWeight={600} gutterBottom>
         My Profile
       </Typography>
