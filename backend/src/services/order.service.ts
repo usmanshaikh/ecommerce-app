@@ -1,4 +1,4 @@
-import Order from '../models/order.model';
+import { Product, Order } from '../models';
 
 export const createOrderFromCheckout = async (checkout: any) => {
   const orderId = 'ORDER-' + Math.random().toString(36).slice(2, 11).toUpperCase();
@@ -12,7 +12,19 @@ export const createOrderFromCheckout = async (checkout: any) => {
     paymentStatus: checkout.paymentStatus || 'success',
   });
 
-  return await order.save();
+  const savedOrder = await order.save();
+
+  // Update sold & stock for each product
+  for (const item of checkout.items) {
+    await Product.findByIdAndUpdate(item.product, {
+      $inc: {
+        sold: item.quantity,
+        stock: -item.quantity,
+      },
+    });
+  }
+
+  return savedOrder;
 };
 
 export const getOrdersByUser = async (userId: string) => {
