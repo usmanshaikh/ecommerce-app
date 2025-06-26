@@ -4,12 +4,9 @@ import { MESSAGES } from '../constants';
 export const register = {
   body: Joi.object().keys({
     email: Joi.string().required().email(),
-    password: Joi.string()
-      .required()
-      .min(6)
-      .pattern(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/)
-      .message(MESSAGES.PASSWORD_REQUIREMENTS),
-    name: Joi.string().required(),
+    password: Joi.string().required().min(6).message(MESSAGES.PASSWORD_REQUIREMENTS),
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
   }),
 };
 
@@ -43,11 +40,7 @@ export const resetPassword = {
     token: Joi.string().required(),
   }),
   body: Joi.object().keys({
-    password: Joi.string()
-      .required()
-      .min(6)
-      .pattern(/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/)
-      .message(MESSAGES.PASSWORD_REQUIREMENTS),
+    password: Joi.string().required().min(6).message(MESSAGES.PASSWORD_REQUIREMENTS),
   }),
 };
 

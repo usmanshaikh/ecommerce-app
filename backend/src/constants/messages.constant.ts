@@ -14,7 +14,7 @@ export const MESSAGES = {
   MAX_REQUESTS_REACHED: 'Too many requests from this IP, please try again later.',
   VALIDATION_ERROR: 'Validation error.',
   ENTER_VALID_EMAIL: 'Please enter a valid email address.',
-  PASSWORD_REQUIREMENTS: 'Password must contain at least one letter and one number.',
+  PASSWORD_REQUIREMENTS: 'Password should be at least 6 characters long.',
   EMAIL_ALREADY_TAKEN: 'Email already taken.',
   USER_NOT_FOUND: 'User not found.',
   INCORRECT_EMAIL_OR_PASSWORD: 'Incorrect email or password.',

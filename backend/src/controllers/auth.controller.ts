@@ -21,7 +21,7 @@ export const login = catchAsync(async (req: Request, res: Response) => {
   const userDetails = {
     _id: user._id,
     email: user.email,
-    name: user.name,
+    name: `${user.firstName} ${user.lastName}`,
     isEmailVerified: user.isEmailVerified,
   };
   const tokens = await jwtHelper.generateAuthTokens(userDetails);

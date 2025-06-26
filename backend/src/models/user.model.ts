@@ -1,4 +1,4 @@
-import mongoose, { Document, Model, Schema } from 'mongoose';
+import mongoose, { Model, Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 import { removeFieldsPlugin } from './plugins';
@@ -25,7 +25,12 @@ const userSchema: Schema<userInterface.IUser> = new Schema(
       minlength: 6,
       select: false,
     },
-    name: {
+    firstName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    lastName: {
       type: String,
       required: true,
       trim: true,
