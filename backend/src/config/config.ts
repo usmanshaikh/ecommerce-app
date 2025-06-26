@@ -26,9 +26,12 @@ const envVarsSchema = Joi.object({
 
   // AWS configuration
   AWS_ACCESS_KEY_ID: Joi.string().required().description('AWS access key ID'),
-  AWS_SECRET_ACCESS_KEY: Joi.string().default(6379).description('AWS secret access key'),
-  AWS_REGION: Joi.string().allow('').description('AWS region'),
-  AWS_S3_BUCKET_NAME: Joi.string().allow('').description('Aws S3 bucket name'),
+  AWS_SECRET_ACCESS_KEY: Joi.string().required().description('AWS secret access key'),
+  AWS_REGION: Joi.string().allow('').required().description('AWS region'),
+  AWS_S3_BUCKET_NAME: Joi.string().required().description('Aws S3 bucket name'),
+
+  // Stripe configuration
+  STRIPE_SECRET_KEY: Joi.string().required().description('Stripe secret key'),
 }).unknown();
 
 const { value: envVars, error } = envVarsSchema.prefs({ errors: { label: 'key' } }).validate(process.env);
@@ -65,6 +68,7 @@ export default {
     region: envVars.AWS_REGION,
     s3BucketName: envVars.AWS_S3_BUCKET_NAME,
   },
+  stripeSecretKey: envVars.STRIPE_SECRET_KEY,
   email: {
     smtp: {
       host: envVars.SMTP_HOST,

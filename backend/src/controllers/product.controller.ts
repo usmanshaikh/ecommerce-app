@@ -62,7 +62,7 @@ export const uploadProductImage = catchAsync(async (req: Request, res: Response)
   sendResponse({
     res,
     statusCode: StatusCodes.OK,
-    message: 'Image uploaded successfully',
+    message: MESSAGES.IMAGE_UPLOAD_SUCCESS,
     data: { imageUrl: file.location },
   });
 });

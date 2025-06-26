@@ -3,6 +3,7 @@ import { catchAsync } from '../middlewares';
 import { cartService } from '../services';
 import { sendResponse } from '../helpers';
 import { StatusCodes } from 'http-status-codes';
+import { MESSAGES } from '../constants';
 
 export const getCart = catchAsync(async (req: Request, res: Response) => {
   const userId = res.locals.user.userId;
@@ -10,7 +11,7 @@ export const getCart = catchAsync(async (req: Request, res: Response) => {
   sendResponse({
     res,
     statusCode: StatusCodes.OK,
-    message: 'Cart fetched',
+    message: MESSAGES.CART_FETCHED,
     data: cart?.items || [],
   });
 });
@@ -22,7 +23,7 @@ export const addItem = catchAsync(async (req: Request, res: Response) => {
   sendResponse({
     res,
     statusCode: StatusCodes.OK,
-    message: 'Item added to cart',
+    message: MESSAGES.CART_ITEM_ADDED,
     data: cart,
   });
 });
@@ -34,7 +35,7 @@ export const removeItem = catchAsync(async (req: Request, res: Response) => {
   sendResponse({
     res,
     statusCode: StatusCodes.OK,
-    message: 'Item removed from cart',
+    message: MESSAGES.CART_ITEM_REMOVED,
     data: cart,
   });
 });

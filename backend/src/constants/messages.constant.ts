@@ -27,4 +27,13 @@ export const MESSAGES = {
 
   PRODUCT_NOT_FOUND: 'Product not found.',
   PRODUCT_CREATED: 'Product created.',
+
+  ORDER_PLACED_SUCCESS: 'Order placed successfully.',
+  STRIPE_SESSION_CREATED: 'Stripe session created.',
+  CART_FETCHED: 'Cart fetched.',
+  CART_ITEM_REMOVED: 'Item removed from cart.',
+  CART_ITEM_ADDED: 'Item added to cart.',
+  CHECKOUT_NOT_FOUND: 'No checkout found.',
+  ORDERS_FETCHED: 'Orders fetched successfully.',
+  IMAGE_UPLOAD_SUCCESS: 'Image uploaded successfully.',
 };

@@ -3,6 +3,8 @@ import authRoute from './auth.routes';
 import profileRoute from './profile.routes';
 import productRoute from './product.routes';
 import cartRoute from './cart.routes';
+import checkoutRoute from './checkout.routes';
+import orderRoute from './order.routes';
 import healthRoute from './health.routes';
 
 const router = express.Router();
@@ -23,6 +25,14 @@ const defaultRoutes = [
   {
     path: '/cart',
     route: cartRoute,
+  },
+  {
+    path: '/checkout',
+    route: checkoutRoute,
+  },
+  {
+    path: '/order',
+    route: orderRoute,
   },
   {
     path: '/health',
