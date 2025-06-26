@@ -10,6 +10,8 @@ export interface IProduct extends Document {
   brand: String;
   stock: number;
   isActive: boolean;
+  sold: number;
+  isFeatured: boolean;
   createdAt: Date;
   updatedAt: Date;
 }

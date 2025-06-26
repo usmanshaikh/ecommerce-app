@@ -16,6 +16,8 @@ const productSchema = new Schema<productInterface.IProduct>(
     brand: { type: String, required: true },
     stock: { type: Number, required: true },
     isActive: { type: Boolean, default: true },
+    sold: { type: Number, default: 0 },
+    isFeatured: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

@@ -1,6 +1,17 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
-import { Box, Grid, TextField, Typography, MenuItem, InputLabel, Select, FormControl } from '@mui/material';
+import {
+  Box,
+  Grid,
+  TextField,
+  Typography,
+  MenuItem,
+  InputLabel,
+  Select,
+  FormControl,
+  FormControlLabel,
+  Checkbox,
+} from '@mui/material';
 import * as yup from 'yup';
 import axios from 'axios';
 import { CustomButton } from '../../components';
@@ -15,7 +26,10 @@ const validationSchema = yup.object({
   brand: yup.string().required(MSG.BRAND.REQUIRED),
   category: yup.string().required(MSG.CATEGORY.REQUIRED),
   petType: yup.string().oneOf(['cat', 'dog'], MSG.PET_TYPE.ONE_OF).required(MSG.PET_TYPE.REQUIRED),
+  isFeatured: yup.boolean(),
 });
+
+const checkboxStyle = { color: '#000', '&.Mui-checked': { color: '#000' } };
 
 const AddProduct = () => {
   const [image, setImage] = useState<File | null>(null);
@@ -30,6 +44,7 @@ const AddProduct = () => {
       brand: '',
       category: '',
       petType: '',
+      isFeatured: false,
     },
     validationSchema,
     onSubmit: async (values) => {},
@@ -135,6 +150,20 @@ const AddProduct = () => {
                 <MenuItem value="dog">Dog</MenuItem>
               </Select>
             </FormControl>
+          </Grid>
+          <Grid size={{ xs: 12 }}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  sx={checkboxStyle}
+                  name="isFeatured"
+                  checked={formik.values.isFeatured}
+                  onChange={formik.handleChange}
+                />
+              }
+              label="Mark as Featured"
+              sx={{ color: '#000' }}
+            />
           </Grid>
           <Grid size={{ xs: 12 }}>
             <input
