@@ -14,10 +14,13 @@ import {
   ListItemButton,
   ListItemText,
   Drawer,
+  Badge,
 } from '@mui/material';
 import { Menu as MenuIcon, PersonOutlineOutlined, ShoppingCartOutlined, FavoriteBorder } from '@mui/icons-material';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../utils/constants';
+import type { RootState } from '../../store';
+import { useAppSelector } from '../../hooks';
 import Images from '../../assets/img';
 import './Header.scss';
 
@@ -29,6 +32,9 @@ const drawerWidth = 240;
 
 const Header = (props: Props) => {
   const navigate = useNavigate();
+  const { isLoggedIn } = useAppSelector((state: RootState) => state.auth);
+  const { count: cartCount } = useAppSelector((state: RootState) => state.cart);
+  const { count: wishlistCount } = useAppSelector((state: RootState) => state.wishlist);
 
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -126,14 +132,20 @@ const Header = (props: Props) => {
               </Button>
             </Box>
             <Box sx={{ flexGrow: 0 }}>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1, mx: 1, color: '#000000' }}>
-                <PersonOutlineOutlined />
-              </IconButton>
+              {isLoggedIn && (
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 1, mx: 1, color: '#000000' }}>
+                  <PersonOutlineOutlined />
+                </IconButton>
+              )}
               <IconButton onClick={() => navigate(`/${ROUTES.WISHLIST}`)} sx={{ p: 1, mx: 1, color: '#000000' }}>
-                <FavoriteBorder />
+                <Badge badgeContent={wishlistCount} color="error">
+                  <FavoriteBorder />
+                </Badge>
               </IconButton>
               <IconButton onClick={() => navigate(`/${ROUTES.CART}`)} sx={{ p: 1, mx: 1, color: '#000000' }}>
-                <ShoppingCartOutlined />
+                <Badge badgeContent={cartCount} color="error">
+                  <ShoppingCartOutlined />
+                </Badge>
               </IconButton>
               <Menu
                 sx={{ mt: '45px' }}
