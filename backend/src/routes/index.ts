@@ -2,6 +2,7 @@ import express from 'express';
 import authRoute from './auth.routes';
 import profileRoute from './profile.routes';
 import productRoute from './product.routes';
+import cartRoute from './cart.routes';
 import healthRoute from './health.routes';
 
 const router = express.Router();
@@ -18,6 +19,10 @@ const defaultRoutes = [
   {
     path: '/product',
     route: productRoute,
+  },
+  {
+    path: '/cart',
+    route: cartRoute,
   },
   {
     path: '/health',
