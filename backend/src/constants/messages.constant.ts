@@ -27,6 +27,7 @@ export const MESSAGES = {
 
   PRODUCT_NOT_FOUND: 'Product not found.',
   PRODUCT_CREATED: 'Product created.',
+  PRODUCT_NOT_FOUND_IN_CART: 'Product not found in cart.',
 
   ORDER_PLACED_SUCCESS: 'Order placed successfully.',
   STRIPE_SESSION_CREATED: 'Stripe session created.',

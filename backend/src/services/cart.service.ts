@@ -1,5 +1,8 @@
 import { Types } from 'mongoose';
 import Cart from '../models/cart.model';
+import { ApiError } from '../helpers';
+import { StatusCodes } from 'http-status-codes';
+import { MESSAGES } from '../constants';
 
 export const getCartByUserId = async (userId: string) => {
   return await Cart.findOne({ user: userId }).populate('items.product');
@@ -29,6 +32,12 @@ export const removeItemFromCart = async (userId: string, productId: string) => {
   const cart = await Cart.findOne({ user: userId });
   if (!cart) return null;
 
+  const originalLength = cart.items.length;
   cart.items = cart.items.filter((item) => item.product.toString() !== productId);
+
+  if (cart.items.length === originalLength) {
+    throw new ApiError(StatusCodes.NOT_FOUND, MESSAGES.PRODUCT_NOT_FOUND_IN_CART);
+  }
+
   return await cart.save();
 };
