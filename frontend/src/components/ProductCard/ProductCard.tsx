@@ -1,6 +1,7 @@
-import { Box, Typography, Card, CardActionArea, CardContent, CardMedia, IconButton } from '@mui/material';
+import { Box, Typography, IconButton } from '@mui/material';
 import { FavoriteBorder, ShoppingCartOutlined } from '@mui/icons-material';
 import './ProductCard.scss';
+import { formatCurrency } from '../../utils/helpers';
 
 type ProductCardProps = {
   image: string;
@@ -20,7 +21,7 @@ const ProductCard = ({ image, title, price, onClick, onAddToCart, onWishlist }: 
         </Box>
         <Box className="card-content">
           <Typography className="card-title">{title}</Typography>
-          <Typography className="card-price">₹{price}</Typography>
+          <Typography className="card-price">{formatCurrency(price)}</Typography>
         </Box>
       </Box>
 

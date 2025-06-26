@@ -20,11 +20,13 @@
       transform: scale(1.05);
     }
   }
-  .card-title {
-    font-size: 20px;
-    font-weight: 600;
-    margin-top: 10px;
-    text-align: center;
+  .categories-section {
+    .card-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 10px;
+      text-align: center;
+    }
   }
   .home-banner-wrapper {
     position: relative;

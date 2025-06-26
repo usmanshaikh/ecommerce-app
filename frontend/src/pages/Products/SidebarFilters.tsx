@@ -1,13 +1,34 @@
 import { Box, FormGroup, FormControlLabel, Checkbox, Typography, Slider } from '@mui/material';
-import { useState } from 'react';
 
 const checkboxStyle = { color: '#000', '&.Mui-checked': { color: '#000' } };
 
-const SidebarFilters = () => {
-  const [value, setValue] = useState<number[]>([100, 1000]);
+type SidebarFiltersProps = {
+  filters: {
+    petType: string[];
+    category: string[];
+    minPrice: number;
+    maxPrice: number;
+  };
+  setFilters: (filters: SidebarFiltersProps['filters']) => void;
+};
 
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    setValue(newValue as number[]);
+const SidebarFilters = ({ filters, setFilters }: SidebarFiltersProps) => {
+  const handleCheckboxChange = (group: 'petType' | 'category', value: string) => {
+    const selectedValues = filters[group];
+    let updatedValues: string[];
+    if (selectedValues.includes(value)) {
+      // Remove the value
+      updatedValues = selectedValues.filter((v) => v !== value);
+    } else {
+      // Add the value
+      updatedValues = [...selectedValues, value];
+    }
+    setFilters({ ...filters, [group]: updatedValues });
+  };
+
+  const handlePriceChange = (_: Event, newValue: number | number[]) => {
+    const [min, max] = newValue as number[];
+    setFilters({ ...filters, minPrice: min, maxPrice: max });
   };
 
   return (
@@ -16,26 +37,40 @@ const SidebarFilters = () => {
         Pet Type
       </Typography>
       <FormGroup>
-        <FormControlLabel control={<Checkbox sx={checkboxStyle} />} label="Cat" sx={{ color: '#000' }} />
-        <FormControlLabel control={<Checkbox sx={checkboxStyle} />} label="Dog" sx={{ color: '#000' }} />
+        {['cat', 'dog'].map((type) => (
+          <FormControlLabel
+            key={type}
+            control={
+              <Checkbox
+                sx={checkboxStyle}
+                checked={filters.petType.includes(type)}
+                onChange={() => handleCheckboxChange('petType', type)}
+              />
+            }
+            label={type[0].toUpperCase() + type.slice(1)}
+            sx={{ color: '#000' }}
+          />
+        ))}
       </FormGroup>
 
       <Typography variant="h6" my={1} fontWeight={600}>
         Category
       </Typography>
       <FormGroup>
-        <FormControlLabel control={<Checkbox sx={checkboxStyle} />} label="Cat Food" sx={{ color: '#000' }} />
-        <FormControlLabel control={<Checkbox sx={checkboxStyle} />} label="Cat Toy" sx={{ color: '#000' }} />
-        <FormControlLabel control={<Checkbox sx={checkboxStyle} />} label="Dog Food" sx={{ color: '#000' }} />
-        <FormControlLabel control={<Checkbox sx={checkboxStyle} />} label="Dog Toy" sx={{ color: '#000' }} />
-      </FormGroup>
-
-      <Typography variant="h6" my={1} fontWeight={600}>
-        Brand
-      </Typography>
-      <FormGroup>
-        <FormControlLabel control={<Checkbox sx={checkboxStyle} />} label="Drools" sx={{ color: '#000' }} />
-        <FormControlLabel control={<Checkbox sx={checkboxStyle} />} label="Meowsi" sx={{ color: '#000' }} />
+        {['cat food', 'cat toy', 'dog food', 'dog toy'].map((cat) => (
+          <FormControlLabel
+            key={cat}
+            control={
+              <Checkbox
+                sx={checkboxStyle}
+                checked={filters.category.includes(cat)}
+                onChange={() => handleCheckboxChange('category', cat)}
+              />
+            }
+            label={cat}
+            sx={{ color: '#000' }}
+          />
+        ))}
       </FormGroup>
 
       <Typography variant="h6" my={1} fontWeight={600} sx={{ color: '#000' }}>
@@ -44,8 +79,8 @@ const SidebarFilters = () => {
       <Box mt={3}>
         <Slider
           getAriaLabel={() => 'Price range'}
-          value={value}
-          onChange={handleChange}
+          value={[filters.minPrice, filters.maxPrice]}
+          onChange={handlePriceChange}
           valueLabelDisplay="auto"
           min={0}
           max={5000}
@@ -53,7 +88,7 @@ const SidebarFilters = () => {
           sx={{ color: '#000' }}
         />
         <Typography variant="body2" mt={1} sx={{ color: '#000' }}>
-          ₹{value[0]} – ₹{value[1]}
+          ₹{filters.minPrice} – ₹{filters.maxPrice}
         </Typography>
       </Box>
     </Box>

@@ -3,9 +3,13 @@ import { useLocation } from 'react-router-dom';
 import { Footer, Header, SnackbarAlert, Loader } from '@components';
 import { ROUTES } from '@utils/constants';
 import AppRoutes from '@routes';
+import { Box } from '@mui/material';
+import { useAxiosInterceptor } from './hooks';
 import './App.scss';
 
 const App = () => {
+  const isLoaded = useAxiosInterceptor();
+
   const { pathname } = useLocation();
 
   useEffect(() => {

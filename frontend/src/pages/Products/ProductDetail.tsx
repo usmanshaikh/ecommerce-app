@@ -1,35 +1,73 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Grid, Typography, Button } from '@mui/material';
 import { FavoriteBorder, Favorite, ShoppingCart } from '@mui/icons-material';
 import { ProductCard } from '@components';
-import Images from '@assets/img';
+import { productApi } from '@api';
+import { useNavigate, useParams } from 'react-router-dom';
+import type { Product } from '@api/types';
+import { formatCurrency } from '../../utils/helpers';
+import { ROUTES } from '../../utils/constants';
+import { useAddToCart, useAppDispatch } from '../../hooks';
 
 const ProductDetail = () => {
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  const navigate = useNavigate();
+  const { handleAddToCart } = useAddToCart();
+
+  const { id } = useParams();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [related, setRelated] = useState<Product[]>([]);
+  const [isWishlisted, setIsWishlisted] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!id) return;
+
+    productApi.getProductById(id).then((res) => {
+      const data = res.data.data;
+      if (data) {
+        setProduct(data);
+      }
+    });
+
+    productApi.getRandomProducts().then((res) => {
+      const data = res.data.data;
+      if (data.length > 0) {
+        setRelated(data);
+      }
+    });
+  }, [id]);
+
+  const handleProductDetailPage = (id: string) => {
+    navigate(`/${ROUTES.PRODUCTS}/${id}`);
+  };
+
+  if (!product) return null;
 
   return (
     <Box px={{ xs: 2, md: 4 }} py={4} className="product-detail-page">
       <Grid container spacing={4}>
         <Grid size={{ xs: 12, md: 6 }}>
-          <Box component="img" src={Images.Product1} alt="Product" className="product-image" />
+          <Box component="img" src={product.images[0]} alt={product.name} className="product-image" />
         </Grid>
 
         <Grid size={{ xs: 12, md: 6 }}>
           <Typography variant="h4" className="product-title">
-            Premium Cat Food
+            {product.name}
           </Typography>
 
           <Typography variant="h5" className="product-price">
-            ₹499.00
+            {formatCurrency(product.price)}
           </Typography>
 
           <Typography variant="body1" className="product-description">
-            A healthy and delicious meal designed especially for your cat's well-being and energy. A healthy and delicious
-            meal designed especially for your cat's well-being and energy.
+            {product.description}
           </Typography>
 
           <Box display="flex" gap={2}>
-            <Button className="add-to-cart-btn" size="large" startIcon={<ShoppingCart />}>
+            <Button
+              className="add-to-cart-btn"
+              size="large"
+              startIcon={<ShoppingCart />}
+              onClick={() => handleAddToCart(product)}>
               Add to Cart
             </Button>
 
@@ -51,9 +89,15 @@ const ProductDetail = () => {
         </Typography>
 
         <Grid container spacing={3}>
-          {[1, 2, 3, 4].map((item) => (
-            <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={item}>
-              <ProductCard image={Images.Product1} title="Whiskas Ocean Fish in Gravy Wet Adult Cat" price="500" />
+          {related.map((item) => (
+            <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={item._id}>
+              <ProductCard
+                image={item.images[0]}
+                title={item.name}
+                price={item.price.toString()}
+                onClick={() => handleProductDetailPage(item._id)}
+                onAddToCart={() => handleAddToCart(item)}
+              />
             </Grid>
           ))}
         </Grid>

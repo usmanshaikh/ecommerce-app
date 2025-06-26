@@ -29,7 +29,24 @@ export const getAllProducts = async (filters: any) => {
     if (filters.maxPrice) query.price.$lte = parseFloat(filters.maxPrice);
   }
 
-  return await Product.find(query);
+  let sort: any = {};
+
+  switch (filters.sort) {
+    case 'priceLowHigh':
+      sort.price = 1;
+      break;
+    case 'priceHighLow':
+      sort.price = -1;
+      break;
+    case 'bestSeller':
+      sort.sold = -1;
+      break;
+    default:
+      sort.createdAt = -1; // Default: latest first
+      break;
+  }
+
+  return await Product.find(query).sort(sort);
 };
 
 export const getProductById = async (id: string) => {

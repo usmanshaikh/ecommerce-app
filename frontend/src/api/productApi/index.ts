@@ -4,8 +4,18 @@ import type { ApiResponse } from '../types';
 import type { ProductResponse, CreateProductPayload, UploadProductImageResponse } from './types';
 
 const productApi = {
-  getAllProducts() {
-    return axios.get<ApiResponse<ProductResponse[]>>(API.PRODUCT);
+  getAllProducts(filters: Record<string, any>) {
+    const queryParams = new URLSearchParams();
+
+    Object.entries(filters).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        value.forEach((v) => queryParams.append(key, v));
+      } else {
+        queryParams.append(key, value);
+      }
+    });
+
+    return axios.get<ApiResponse<ProductResponse[]>>(`${API.PRODUCT}?${queryParams.toString()}`);
   },
   getBestSellers() {
     return axios.get<ApiResponse<ProductResponse[]>>(API.BEST_SELLERS);
