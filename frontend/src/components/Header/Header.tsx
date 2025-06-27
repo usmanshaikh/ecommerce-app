@@ -150,11 +150,11 @@ const Header = (props: Props) => {
                 onClick={() => navigate(`/${ROUTES.PRODUCTS}`)}>
                 Shop
               </Button>
-              <Button
+              {/* <Button
                 sx={{ fontSize: 18, mx: 1, color: '#000000', display: 'block', fontWeight: 600 }}
                 onClick={() => navigate(`/${ROUTES.ADD_PRODUCT}`)}>
                 Add Product
-              </Button>
+              </Button> */}
             </Box>
             <Box sx={{ flexGrow: 0, display: 'flex' }}>
               {isLoggedIn ? (
