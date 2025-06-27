@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Box, Grid, Typography, Button } from '@mui/material';
-import { FavoriteBorder, Favorite, ShoppingCart } from '@mui/icons-material';
+import { ShoppingCart } from '@mui/icons-material';
 import { ProductCard } from '@components';
 import { productApi } from '@api';
 import { useNavigate, useParams } from 'react-router-dom';
 import type { Product } from '@api/types';
 import { formatCurrency } from '../../utils/helpers';
 import { ROUTES } from '../../utils/constants';
-import { useAddToCart, useAppDispatch } from '../../hooks';
+import { useAddToCart } from '../../hooks';
 
 const ProductDetail = () => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import { Box, Typography, IconButton } from '@mui/material';
-import { FavoriteBorder, ShoppingCartOutlined } from '@mui/icons-material';
+import { ShoppingCartOutlined } from '@mui/icons-material';
 import { formatCurrency } from '@utils/helpers';
 import './ProductCard.scss';
 
@@ -14,16 +14,7 @@ type ProductCardProps = {
   hideActions?: boolean;
 };
 
-const ProductCard = ({
-  image,
-  title,
-  price,
-  quantity,
-  onClick,
-  onAddToCart,
-  onWishlist,
-  hideActions = false,
-}: ProductCardProps) => {
+const ProductCard = ({ image, title, price, quantity, onClick, onAddToCart, hideActions = false }: ProductCardProps) => {
   return (
     <Box className="product-card-component" onClick={() => onClick && onClick('1')}>
       <Box className="product-card">

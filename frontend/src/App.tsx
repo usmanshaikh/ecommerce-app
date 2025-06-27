@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Footer, Header, SnackbarAlert, Loader } from '@components';
+import { Footer, Header, SnackbarAlert } from '@components';
 import { ROUTES } from '@utils/constants';
 import AppRoutes from '@routes';
 import { Box } from '@mui/material';
@@ -24,7 +24,6 @@ const App = () => {
 
   return (
     <>
-      <Loader />
       <SnackbarAlert />
       {!shouldHideLayout && <Header />}
       <AppRoutes />

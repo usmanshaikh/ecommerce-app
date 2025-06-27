@@ -4,7 +4,7 @@ import axios from 'axios';
 import { authApi } from '../api';
 import { ROUTES } from '../utils/constants';
 import { useAppDispatch, useAppSelector } from './useReduxHooks';
-import { clearTokens, hideLoader, setTokens, showLoader } from '../store/slices';
+import { clearTokens, setTokens } from '../store/slices';
 import type { RootState } from '../store';
 
 const NO_LOADER = { headers: { noLoader: true } };
@@ -41,7 +41,9 @@ const useAxiosInterceptor = () => {
 
   const removeRequest = (req: any) => {
     requestsCount.splice(requestsCount.indexOf(req), 1);
-    // if (requestsCount.length === 0) dispatch(hideLoader());
+    // if (requestsCount.length === 0) {
+    // hide global loader here
+    // };
   };
 
   const addRequest = (config: any) => {
@@ -52,7 +54,7 @@ const useAxiosInterceptor = () => {
 
   const reqInterceptor = (config: any) => {
     if (!config.headers.noLoader) {
-      // dispatch(showLoader());
+      // show global loader here
       addRequest(config);
     }
     const token = auth.accessToken;
