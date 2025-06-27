@@ -6,7 +6,6 @@ export const ROUTE_PATHS = {
   CHECKOUT_SUCCESS: 'checkout-success',
   CHECKOUT_FAILED: 'checkout-failed',
   ORDERS: 'orders',
-  WISHLIST: 'wishlist',
   PRODUCTS: 'products',
   PROFILE: 'profile',
   ADD_PRODUCT: 'add-product',

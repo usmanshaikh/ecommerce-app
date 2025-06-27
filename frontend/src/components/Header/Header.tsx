@@ -37,7 +37,6 @@ const Header = (props: Props) => {
   const dispatch = useAppDispatch();
   const { isLoggedIn } = useAppSelector((state: RootState) => state.auth);
   const { count: cartCount } = useAppSelector((state: RootState) => state.cart);
-  const { count: wishlistCount } = useAppSelector((state: RootState) => state.wishlist);
 
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -158,11 +157,12 @@ const Header = (props: Props) => {
                   <PersonOutlineOutlined />
                 </IconButton>
               )}
-              <IconButton onClick={() => navigate(`/${ROUTES.WISHLIST}`)} sx={{ p: 1, mx: 1, color: '#000000' }}>
+              {/* TODO: Implement wishlist functionality */}
+              {/* <IconButton onClick={() => navigate(`/${ROUTES.WISHLIST}`)} sx={{ p: 1, mx: 1, color: '#000000' }}>
                 <Badge badgeContent={wishlistCount} color="error">
                   <FavoriteBorder />
                 </Badge>
-              </IconButton>
+              </IconButton> */}
               <IconButton onClick={() => navigate(`/${ROUTES.CART}`)} sx={{ p: 1, mx: 1, color: '#000000' }}>
                 <Badge badgeContent={cartCount} color="error">
                   <ShoppingCartOutlined />

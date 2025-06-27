@@ -5,7 +5,6 @@ import Checkout from './Checkout/Checkout';
 import CheckoutFailed from './Checkout/CheckoutFailed';
 import CheckoutSuccess from './Checkout/CheckoutSuccess';
 import Orders from './Orders/Orders';
-import Wishlist from './Wishlist/Wishlist';
 import Profile from './Profile/Profile';
 import ProductList from './Products/ProductList';
 import ProductDetail from './Products/ProductDetail';
@@ -20,7 +19,6 @@ export {
   CheckoutFailed,
   CheckoutSuccess,
   Orders,
-  Wishlist,
   ProductList,
   ProductDetail,
   Profile,

@@ -16,7 +16,6 @@ const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const [related, setRelated] = useState<Product[]>([]);
-  const [isWishlisted, setIsWishlisted] = useState<boolean>(false);
 
   useEffect(() => {
     if (!id) return;
@@ -70,15 +69,15 @@ const ProductDetail = () => {
               onClick={() => handleAddToCart(product)}>
               Add to Cart
             </Button>
-
-            <Button
+            {/* TODO: Implement wishlist functionality */}
+            {/* <Button
               variant="outlined"
               size="large"
               startIcon={isWishlisted ? <Favorite /> : <FavoriteBorder />}
               className={`wishlist-btn ${isWishlisted ? 'active' : ''}`}
               onClick={() => setIsWishlisted((prev) => !prev)}>
               {isWishlisted ? 'Wishlisted' : 'Wishlist'}
-            </Button>
+            </Button> */}
           </Box>
         </Grid>
       </Grid>

@@ -11,7 +11,6 @@ import {
   Checkout,
   Cart,
   Home,
-  Wishlist,
   AddProduct,
   CheckoutSuccess,
   CheckoutFailed,
@@ -36,7 +35,6 @@ const AppRoutes = () => {
         <Route path={`/${ROUTES.CHECKOUT_SUCCESS}`} element={<CheckoutSuccess />} />
         <Route path={`/${ROUTES.CHECKOUT_FAILED}`} element={<CheckoutFailed />} />
         <Route path={`/${ROUTES.ORDERS}`} element={<Orders />} />
-        <Route path={`/${ROUTES.WISHLIST}`} element={<Wishlist />} />
         <Route path={`/${ROUTES.PROFILE}`} element={<Profile />} />
         <Route path={`/${ROUTES.PRODUCTS}`} element={<ProductList />} />
         <Route path={`/${ROUTES.PRODUCTS}/:id`} element={<ProductDetail />} />

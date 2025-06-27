@@ -39,9 +39,10 @@ const ProductCard = ({
 
       {!hideActions && (
         <Box className="hover-actions" onClick={(e) => e.stopPropagation()}>
-          <IconButton onClick={onWishlist} size="small" sx={{ bgcolor: 'white', mb: 1 }}>
+          {/* TODO: Implement wishlist functionality */}
+          {/* <IconButton onClick={onWishlist} size="small" sx={{ bgcolor: 'white', mb: 1 }}>
             <FavoriteBorder fontSize="small" />
-          </IconButton>
+          </IconButton> */}
           <IconButton onClick={onAddToCart} size="small" sx={{ bgcolor: 'white', mb: 1 }}>
             <ShoppingCartOutlined fontSize="small" />
           </IconButton>
