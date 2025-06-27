@@ -2,8 +2,6 @@
 
 🔗 **Live Demo:** [http://petify-frontend.s3-website.eu-north-1.amazonaws.com/](http://petify-frontend.s3-website.eu-north-1.amazonaws.com/)
 
-![Petify Banner](https://petify-storage.s3.eu-north-1.amazonaws.com/website-screenshot.PNG)
-
 ## 📦 Features
 
 - 🐾 Pet-specific categories (Cats, Dogs)
