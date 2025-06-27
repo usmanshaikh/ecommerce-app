@@ -12,7 +12,7 @@ export interface IUser extends Document {
 }
 
 export interface UserJwtDetails {
-  _id: Types.ObjectId;
+  userId: Types.ObjectId;
   email: string;
   isEmailVerified: boolean;
 }

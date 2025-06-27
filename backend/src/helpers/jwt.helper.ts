@@ -11,8 +11,8 @@ export const generateToken = (
   secret: string = config.jwt.secret,
 ): string => {
   const payload = {
-    sub: userDetails._id,
-    userId: userDetails._id,
+    sub: userDetails.userId,
+    userId: userDetails.userId,
     email: userDetails.email,
     isEmailVerified: userDetails.isEmailVerified,
     iat: moment().unix(),
@@ -56,26 +56,4 @@ export const generateAuthTokens = async (
       expires: refreshTokenExpires.toDate(),
     },
   };
-};
-
-export const generateResetPasswordToken = (email: string): string => {
-  const expires = moment().add(config.jwt.resetPasswordExpirationMinutes, 'minutes');
-  const payload = {
-    sub: email,
-    iat: moment().unix(),
-    exp: expires.unix(),
-    type: 'RESET_PASSWORD',
-  };
-  return jwt.sign(payload, config.jwt.secret);
-};
-
-export const generateVerifyEmailToken = (userId: string): string => {
-  const expires = moment().add(config.jwt.verifyEmailExpirationMinutes, 'minutes');
-  const payload = {
-    sub: userId,
-    iat: moment().unix(),
-    exp: expires.unix(),
-    type: 'VERIFY_EMAIL',
-  };
-  return jwt.sign(payload, config.jwt.secret);
 };

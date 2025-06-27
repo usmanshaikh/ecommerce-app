@@ -80,7 +80,11 @@ const Header = (props: Props) => {
   };
 
   useEffect(() => {
-    if (isLoggedIn) getCartCount();
+    if (isLoggedIn) {
+      setTimeout(() => {
+        getCartCount();
+      }, 500);
+    }
   }, [isLoggedIn]);
 
   const container = window !== undefined ? () => window().document.body : undefined;

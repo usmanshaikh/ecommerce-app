@@ -21,7 +21,7 @@ export const login = catchAsync(async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const user = await authService.loginUserWithEmailAndPassword(email, password);
   const userDetails = {
-    _id: user._id,
+    userId: user._id,
     email: user.email,
     isEmailVerified: user.isEmailVerified,
   };
