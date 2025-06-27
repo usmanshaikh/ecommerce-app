@@ -1,5 +1,6 @@
 import mongoose, { Schema, Model } from 'mongoose';
 import { checkoutInterface } from '../interfaces';
+import { removeFieldsPlugin } from './plugins';
 
 const addressSchema = new Schema<checkoutInterface.IAddress>({
   street: { type: String, required: true },
@@ -37,6 +38,8 @@ const checkoutSchema = new Schema<checkoutInterface.ICheckout>(
   },
   { timestamps: true },
 );
+
+checkoutSchema.plugin(removeFieldsPlugin, ['__v', 'createdAt', 'updatedAt']);
 
 const Checkout: Model<checkoutInterface.ICheckout> = mongoose.model<checkoutInterface.ICheckout>('Checkout', checkoutSchema);
 

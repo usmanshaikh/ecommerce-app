@@ -17,13 +17,6 @@ const envVarsSchema = Joi.object({
   REDIS_PORT: Joi.number().default(6379).description('Redis server port'),
   REDIS_PASSWORD: Joi.string().allow('').description('Password for Redis server'),
 
-  SMTP_HOST: Joi.string().required().description('server that will send the emails'),
-  SMTP_PORT: Joi.number().required().description('port to connect to the email server'),
-  SMTP_USERNAME: Joi.string().required().description('username for email server'),
-  SMTP_PASSWORD: Joi.string().required().description('password for email server'),
-  EMAIL_FROM: Joi.string().required().description('the from field in the emails sent by the app'),
-  ORIGIN_URL: Joi.string().required().description('Origin URL for email template link'),
-
   // AWS configuration
   AWS_ACCESS_KEY_ID: Joi.string().required().description('AWS access key ID'),
   AWS_SECRET_ACCESS_KEY: Joi.string().required().description('AWS secret access key'),
@@ -69,15 +62,4 @@ export default {
     s3BucketName: envVars.AWS_S3_BUCKET_NAME,
   },
   stripeSecretKey: envVars.STRIPE_SECRET_KEY,
-  email: {
-    smtp: {
-      host: envVars.SMTP_HOST,
-      port: envVars.SMTP_PORT,
-      auth: {
-        user: envVars.SMTP_USERNAME,
-        pass: envVars.SMTP_PASSWORD,
-      },
-    },
-    from: envVars.EMAIL_FROM,
-  },
 };

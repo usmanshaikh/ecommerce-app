@@ -1,5 +1,6 @@
 import mongoose, { Schema, Model } from 'mongoose';
 import { profileInterface } from '../interfaces';
+import { removeFieldsPlugin } from './plugins';
 
 const addressSchema = new Schema<profileInterface.IAddress>(
   {
@@ -23,6 +24,8 @@ const profileSchema = new Schema<profileInterface.IProfile>(
   },
   { timestamps: true },
 );
+
+profileSchema.plugin(removeFieldsPlugin, ['__v', 'createdAt', 'updatedAt']);
 
 const Profile: Model<profileInterface.IProfile> = mongoose.model<profileInterface.IProfile>('Profile', profileSchema);
 

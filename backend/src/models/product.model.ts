@@ -1,5 +1,6 @@
 import mongoose, { Schema, Model } from 'mongoose';
 import { productInterface } from '../interfaces';
+import { removeFieldsPlugin } from './plugins';
 
 const productSchema = new Schema<productInterface.IProduct>(
   {
@@ -21,6 +22,8 @@ const productSchema = new Schema<productInterface.IProduct>(
   },
   { timestamps: true },
 );
+
+productSchema.plugin(removeFieldsPlugin, ['__v', 'createdAt', 'updatedAt']);
 
 const Product: Model<productInterface.IProduct> = mongoose.model<productInterface.IProduct>('Product', productSchema);
 

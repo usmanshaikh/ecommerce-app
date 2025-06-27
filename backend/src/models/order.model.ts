@@ -1,5 +1,6 @@
 import mongoose, { Schema, Model } from 'mongoose';
 import { orderInterface } from '../interfaces';
+import { removeFieldsPlugin } from './plugins';
 
 const orderItemSchema = new Schema<orderInterface.IOrderItem>(
   {
@@ -35,6 +36,8 @@ const orderSchema = new Schema<orderInterface.IOrder>(
   },
   { timestamps: true },
 );
+
+orderSchema.plugin(removeFieldsPlugin, ['__v', 'createdAt', 'updatedAt']);
 
 const Order: Model<orderInterface.IOrder> = mongoose.model<orderInterface.IOrder>('Order', orderSchema);
 

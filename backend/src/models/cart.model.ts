@@ -1,5 +1,6 @@
 import mongoose, { Schema, Model } from 'mongoose';
 import { cartInterface } from '../interfaces';
+import { removeFieldsPlugin } from './plugins';
 
 const cartItemSchema = new Schema<cartInterface.ICartItem>(
   {
@@ -16,6 +17,8 @@ const cartSchema = new Schema<cartInterface.ICart>(
   },
   { timestamps: true },
 );
+
+cartSchema.plugin(removeFieldsPlugin, ['__v', 'createdAt', 'updatedAt']);
 
 const Cart: Model<cartInterface.ICart> = mongoose.model<cartInterface.ICart>('Cart', cartSchema);
 
