@@ -10,7 +10,7 @@ import type { RootState } from '../store';
 const NO_LOADER = { headers: { noLoader: true } };
 
 const axiosInstance = axios.create({
-  baseURL: 'https://ecommerce-app-9k1h.onrender.com/',
+  baseURL: 'http://ec2-16-171-2-17.eu-north-1.compute.amazonaws.com:3000/',
   // baseURL: 'http://localhost:3000/',
   headers: { 'Content-Type': 'application/json' },
 });
