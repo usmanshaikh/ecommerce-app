@@ -6,9 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import type { CartResponse } from '@api/types';
 import { cartApi } from '@api';
 import { formatCurrency } from '@utils/helpers';
+import { useAppSelector } from '@hooks';
+import type { RootState } from '@store';
 
 const Cart = () => {
   const navigate = useNavigate();
+  const { isLoggedIn } = useAppSelector((state: RootState) => state.auth);
   const [cartItems, setCartItems] = useState<CartResponse[]>([]);
 
   const fetchCart = async () => {
@@ -34,7 +37,7 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    fetchCart();
+    isLoggedIn && fetchCart();
   }, []);
 
   const subtotal = cartItems.reduce((total, item) => total + item.product.price * item.quantity, 0);

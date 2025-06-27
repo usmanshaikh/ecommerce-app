@@ -6,6 +6,8 @@ import { CustomButton, EmptyView } from '@components';
 import { formatCurrency } from '@utils/helpers';
 import type { CartResponse } from '@api/types';
 import { cartApi, checkoutApi } from '@api';
+import { useAppSelector } from '@hooks';
+import type { RootState } from '@store';
 
 const validationSchema = yup.object({
   fullName: yup.string().required('Full Name is required'),
@@ -22,6 +24,7 @@ const validationSchema = yup.object({
 });
 
 const Checkout = () => {
+  const { isLoggedIn } = useAppSelector((state: RootState) => state.auth);
   const [cartItems, setCartItems] = useState<CartResponse[]>([]);
 
   const formik = useFormik({
@@ -80,7 +83,7 @@ const Checkout = () => {
   };
 
   useEffect(() => {
-    fetchCart();
+    isLoggedIn && fetchCart();
   }, []);
 
   const subtotal = cartItems.reduce((total, item) => total + item.product.price * item.quantity, 0);
