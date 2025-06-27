@@ -22,8 +22,8 @@ import { ROUTES } from '@utils/constants';
 import type { RootState } from '@store';
 import { useAppDispatch, useAppSelector } from '@hooks';
 import Images from '@assets/img';
-import { cartApi } from '@api';
-import { setCartCount } from '@store/slices';
+import { authApi, cartApi } from '@api';
+import { clearCartCount, clearTokens, setCartCount } from '@store/slices';
 import './Header.scss';
 
 interface Props {
@@ -60,9 +60,16 @@ const Header = (props: Props) => {
     handleCloseUserMenu();
   };
 
-  const handleLogout = () => {
-    navigate(`/${ROUTES.LOGIN}`);
+  const handleLogout = async () => {
     handleCloseUserMenu();
+    try {
+      const refreshToken = localStorage.getItem('refreshToken') as string;
+      if (refreshToken) await authApi.logout({ refreshToken });
+    } finally {
+      dispatch(clearTokens());
+      dispatch(clearCartCount());
+      navigate(`/${ROUTES.LOGIN}`);
+    }
   };
 
   const getCartCount = async () => {
