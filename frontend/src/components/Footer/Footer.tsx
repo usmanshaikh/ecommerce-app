@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import { Instagram, Pinterest, FacebookOutlined } from '@mui/icons-material';
 import { Grid, Container, Box } from '@mui/material';
-import Images from '@assets/img';
 import './Footer.scss';
 
 const Footer = () => {
@@ -15,7 +14,11 @@ const Footer = () => {
               <Box>
                 <Box className="footer-brand">
                   <Link to="/">
-                    <img src={Images.Logo} className="footer-logo" alt="logo" />
+                    <img
+                      src="https://petify-storage.s3.eu-north-1.amazonaws.com/logo.png"
+                      className="footer-logo"
+                      alt="logo"
+                    />
                   </Link>
 
                   <p className="footer-text">
@@ -205,7 +208,14 @@ const Footer = () => {
               </p>
             </Grid>
             <Grid size={{ xs: 12, md: 6 }} justifyContent={'flex-end'} display="flex">
-              <img src={Images.Payment} width="397" height="32" loading="lazy" alt="payment method" className="img" />
+              <img
+                src="https://petify-storage.s3.eu-north-1.amazonaws.com/payment.png"
+                width="397"
+                height="32"
+                loading="lazy"
+                alt="payment method"
+                className="img"
+              />
             </Grid>
           </Grid>
         </Container>

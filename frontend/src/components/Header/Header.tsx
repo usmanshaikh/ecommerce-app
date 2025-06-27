@@ -21,7 +21,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '@utils/constants';
 import type { RootState } from '@store';
 import { useAppDispatch, useAppSelector } from '@hooks';
-import Images from '@assets/img';
 import { authApi, cartApi } from '@api';
 import { clearCartCount, clearTokens, setCartCount } from '@store/slices';
 import CustomButton from '../CustomButton/CustomButton';
@@ -120,7 +119,7 @@ const Header = (props: Props) => {
           <Toolbar disableGutters>
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
               <Link to="/">
-                <img src={Images.Logo} className="header-logo" alt="logo" />
+                <img src="https://petify-storage.s3.eu-north-1.amazonaws.com/logo.png" className="header-logo" alt="logo" />
               </Link>
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' } }}>
@@ -136,7 +135,7 @@ const Header = (props: Props) => {
             </Box>
             <Box sx={{ mr: 2, display: { xs: 'flex', sm: 'none' }, flexGrow: 1 }}>
               <Link to="/">
-                <img src={Images.Logo} className="header-logo" alt="logo" />
+                <img src="https://petify-storage.s3.eu-north-1.amazonaws.com/logo.png" className="header-logo" alt="logo" />
               </Link>
             </Box>
             <Box sx={{ ml: 3, flexGrow: 1, display: { xs: 'none', sm: 'flex' } }}>

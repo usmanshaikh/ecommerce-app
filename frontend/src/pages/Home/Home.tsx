@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import Images from '@assets/img';
 import { ProductCard } from '@components';
 import { ROUTES } from '@utils/constants';
 import type { Product } from '@api/types';
@@ -10,10 +9,10 @@ import { useAddToCart } from '../../hooks';
 import './Home.scss';
 
 const topCategories = [
-  { title: 'Cat Food', image: Images.CatFood, bg: '#f8e9d2' },
-  { title: 'Cat Toy', image: Images.CatToy, bg: '#f3ecfc' },
-  { title: 'Dog Food', image: Images.DogFood, bg: '#f0fdec' },
-  { title: 'Dog Toy', image: Images.DogToy, bg: '#ffc7c7' },
+  { title: 'Cat Food', image: 'https://petify-storage.s3.eu-north-1.amazonaws.com/cat-food.png', bg: '#f8e9d2' },
+  { title: 'Cat Toy', image: 'https://petify-storage.s3.eu-north-1.amazonaws.com/cat-toy.png', bg: '#f3ecfc' },
+  { title: 'Dog Food', image: 'https://petify-storage.s3.eu-north-1.amazonaws.com/dog-food.png', bg: '#f0fdec' },
+  { title: 'Dog Toy', image: 'https://petify-storage.s3.eu-north-1.amazonaws.com/dog-toy.png', bg: '#ffc7c7' },
 ];
 
 const Home = () => {
@@ -41,7 +40,11 @@ const Home = () => {
   return (
     <Box className="home-page">
       <Box className="home-banner-wrapper">
-        <img src={Images.Banner} className="home-banner" alt="Petify Banner" />
+        <img
+          src="https://petify-storage.s3.eu-north-1.amazonaws.com/banner.png"
+          className="home-banner"
+          alt="Petify Banner"
+        />
         <Box className="banner-content">
           <Typography variant="h3" fontWeight={700}>
             Everything Your Pet Deserves
@@ -63,12 +66,20 @@ const Home = () => {
             <Grid container spacing={2}>
               <Grid size={{ xs: 12, md: 6 }}>
                 <Box className="card-wrapper" onClick={() => navigate(`/${ROUTES.PRODUCTS}`)}>
-                  <img src={Images.Cat3} className="card-img" alt="Cat And Dog" />
+                  <img
+                    src="https://petify-storage.s3.eu-north-1.amazonaws.com/03-cat.png"
+                    className="card-img"
+                    alt="Cat And Dog"
+                  />
                 </Box>
               </Grid>
               <Grid size={{ xs: 12, md: 6 }}>
                 <Box className="card-wrapper" onClick={() => navigate(`/${ROUTES.PRODUCTS}`)}>
-                  <img src={Images.Dog1} className="card-img" alt="Cat And Dog" />
+                  <img
+                    src="https://petify-storage.s3.eu-north-1.amazonaws.com/01-dog.jpg"
+                    className="card-img"
+                    alt="Cat And Dog"
+                  />
                 </Box>
               </Grid>
             </Grid>
