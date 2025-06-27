@@ -3,10 +3,14 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { CheckCircleOutline, ErrorOutline } from '@mui/icons-material';
 import checkoutApi from '@api/checkoutApi';
+import { cartApi } from '../../api';
+import { useAppDispatch } from '../../hooks';
+import { setCartCount } from '../../store/slices';
 
 const CheckoutSuccess = () => {
   const navigate = useNavigate();
   const [params] = useSearchParams();
+  const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const sessionId = params.get('session_id');
@@ -20,6 +24,7 @@ const CheckoutSuccess = () => {
       if (sessionId) {
         const res = await checkoutApi.confirmStripeOrder(sessionId);
         if (res.data.status === 'success') {
+          getCartCount();
           setTimeout(() => {
             navigate('/orders');
           }, 2000);
@@ -30,6 +35,13 @@ const CheckoutSuccess = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const getCartCount = async () => {
+    const res = await cartApi.getCart();
+    const items = res.data.data;
+    const count = items.reduce((total: number, item: any) => total + item.quantity, 0);
+    dispatch(setCartCount(count));
   };
 
   return (

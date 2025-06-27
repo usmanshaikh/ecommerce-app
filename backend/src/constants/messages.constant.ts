@@ -37,4 +37,5 @@ export const MESSAGES = {
   CHECKOUT_NOT_FOUND: 'No checkout found.',
   ORDERS_FETCHED: 'Orders fetched successfully.',
   IMAGE_UPLOAD_SUCCESS: 'Image uploaded successfully.',
+  ID_NOT_FOUND_IN_SESSION: 'User ID not found in session metadata',
 };

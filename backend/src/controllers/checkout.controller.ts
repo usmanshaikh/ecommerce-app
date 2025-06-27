@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { catchAsync } from '../middlewares';
 import { sendResponse } from '../helpers';
 import { StatusCodes } from 'http-status-codes';
-import { checkoutService, orderService } from '../services';
+import { cartService, checkoutService, orderService } from '../services';
 import { stripe } from '../config/stripe';
 import { Product } from '../models';
 import config from '../config/config';
@@ -61,12 +61,24 @@ export const confirmStripeOrder = catchAsync(async (req: Request, res: Response)
   const sessionId = req.query.session_id as string;
 
   const session = await stripe.checkout.sessions.retrieve(sessionId);
-  const userId = session.metadata?.userId!;
+  const userId = session.metadata?.userId;
+
+  if (!userId) {
+    return sendResponse({
+      res,
+      statusCode: StatusCodes.BAD_REQUEST,
+      message: MESSAGES.ID_NOT_FOUND_IN_SESSION,
+    });
+  }
 
   const checkout = await checkoutService.getCheckoutByUser(userId);
 
   if (!checkout) {
-    return res.status(404).json({ message: MESSAGES.CHECKOUT_NOT_FOUND });
+    return sendResponse({
+      res,
+      statusCode: StatusCodes.NOT_FOUND,
+      message: MESSAGES.CHECKOUT_NOT_FOUND,
+    });
   }
 
   const order = await orderService.createOrderFromCheckout({
@@ -75,10 +87,11 @@ export const confirmStripeOrder = catchAsync(async (req: Request, res: Response)
   });
 
   await checkoutService.deleteCheckoutByUser(userId);
+  await cartService.clearCartByUser(userId);
 
   sendResponse({
     res,
-    statusCode: 200,
+    statusCode: StatusCodes.OK,
     message: MESSAGES.ORDER_PLACED_SUCCESS,
     data: order,
   });

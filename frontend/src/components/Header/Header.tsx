@@ -24,8 +24,8 @@ import { useAppDispatch, useAppSelector } from '@hooks';
 import Images from '@assets/img';
 import { authApi, cartApi } from '@api';
 import { clearCartCount, clearTokens, setCartCount } from '@store/slices';
-import './Header.scss';
 import CustomButton from '../CustomButton/CustomButton';
+import './Header.scss';
 
 interface Props {
   window?: () => Window;

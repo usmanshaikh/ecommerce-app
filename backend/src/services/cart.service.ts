@@ -47,3 +47,7 @@ export const removeItemFromCart = async (userId: string, productId: string) => {
 
   return await cart.save();
 };
+
+export const clearCartByUser = async (userId: string) => {
+  await Cart.findOneAndUpdate({ user: userId }, { $set: { items: [] } });
+};

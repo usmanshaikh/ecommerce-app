@@ -78,7 +78,7 @@ const useAxiosInterceptor = () => {
     const { config, response } = error;
     const originalRequest = config;
 
-    if ([401, 498].includes(response?.status) && !config.url.includes('auth/')) {
+    if ([401, 403].includes(response?.status) && !config.url.includes('auth/')) {
       if (!isRefreshing) {
         isRefreshing = true;
         const refreshToken = auth.refreshToken as string;
