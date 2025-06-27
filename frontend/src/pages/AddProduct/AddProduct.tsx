@@ -13,16 +13,17 @@ import {
   Checkbox,
   Button,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { CustomButton } from '@components';
 import { MSG as MESSAGE } from '@utils/constants';
-import { useNavigate } from 'react-router-dom';
+import { productApi } from '@api';
 
 const MSG = MESSAGE.VALIDATION.PRODUCT;
 const validationSchema = yup.object({
   name: yup.string().required(MSG.NAME.REQUIRED),
   description: yup.string().required(MSG.DESCRIPTION.REQUIRED),
-  price: yup.number().required(MSG.PRICE.REQUIRED).positive(MSG.PRICE.POSITIVE),
+  price: yup.number().required(MSG.PRICE.REQUIRED).positive(MSG.PRICE.POSITIVE).max(5000, 'Price cannot exceed ₹5,000'),
   stock: yup.number().required(MSG.STOCK.REQUIRED).min(0, MSG.STOCK.MIN),
   brand: yup.string().required(MSG.BRAND.REQUIRED),
   category: yup.string().required(MSG.CATEGORY.REQUIRED),
@@ -50,8 +51,37 @@ const AddProduct = () => {
       isFeatured: false,
     },
     validationSchema,
-    onSubmit: async (values) => {},
+    onSubmit: (values) => handleAddProductSubmit(values),
   });
+
+  const handleAddProductSubmit = async (values: any) => {
+    try {
+      let imageUrl = '';
+
+      if (image) {
+        const formData = new FormData();
+        formData.append('image', image);
+        const imgRes = await productApi.uploadProductImage(formData);
+        imageUrl = imgRes.data.data.imageUrl;
+      }
+
+      const payload = {
+        ...values,
+        price: Number(values.price),
+        stock: Number(values.stock),
+        images: [imageUrl],
+      };
+
+      const res = await productApi.createProduct(payload);
+      if (res.data.status === 'success') {
+        setImage(null);
+        setImagePreview(null);
+        formik.resetForm();
+      }
+    } catch (err) {
+      console.error('Product creation failed:', err);
+    }
+  };
 
   return (
     <Box maxWidth="lg" mx="auto" p={3} pb={15}>

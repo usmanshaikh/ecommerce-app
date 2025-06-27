@@ -30,7 +30,9 @@ const productApi = {
     return axios.post<ApiResponse<ProductResponse>>(API.PRODUCT, payload);
   },
   uploadProductImage(payload: FormData) {
-    return axios.post<ApiResponse<UploadProductImageResponse>>(API.UPLOAD_IMAGE, payload);
+    return axios.post<ApiResponse<UploadProductImageResponse>>(API.UPLOAD_IMAGE, payload, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   },
 };
 
