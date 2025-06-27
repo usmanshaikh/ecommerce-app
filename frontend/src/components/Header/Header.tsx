@@ -16,7 +16,7 @@ import {
   Drawer,
   Badge,
 } from '@mui/material';
-import { Menu as MenuIcon, PersonOutlineOutlined, ShoppingCartOutlined, FavoriteBorder } from '@mui/icons-material';
+import { Menu as MenuIcon, PersonOutlineOutlined, ShoppingCartOutlined } from '@mui/icons-material';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '@utils/constants';
 import type { RootState } from '@store';
@@ -25,6 +25,7 @@ import Images from '@assets/img';
 import { authApi, cartApi } from '@api';
 import { clearCartCount, clearTokens, setCartCount } from '@store/slices';
 import './Header.scss';
+import CustomButton from '../CustomButton/CustomButton';
 
 interface Props {
   window?: () => Window;
@@ -151,11 +152,15 @@ const Header = (props: Props) => {
                 Add Product
               </Button>
             </Box>
-            <Box sx={{ flexGrow: 0 }}>
-              {isLoggedIn && (
+            <Box sx={{ flexGrow: 0, display: 'flex' }}>
+              {isLoggedIn ? (
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 1, mx: 1, color: '#000000' }}>
                   <PersonOutlineOutlined />
                 </IconButton>
+              ) : (
+                <CustomButton variantType="white" sx={{ p: 0, mr: 5 }} onClick={() => navigate(`/${ROUTES.LOGIN}`)}>
+                  Login
+                </CustomButton>
               )}
               {/* TODO: Implement wishlist functionality */}
               {/* <IconButton onClick={() => navigate(`/${ROUTES.WISHLIST}`)} sx={{ p: 1, mx: 1, color: '#000000' }}>
