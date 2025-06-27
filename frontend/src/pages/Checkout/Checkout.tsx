@@ -29,13 +29,13 @@ const Checkout = () => {
 
   const formik = useFormik({
     initialValues: {
-      fullName: 'Usman Shaikh',
-      phone: '8888888888',
-      address: '401 High star',
-      city: 'Mumbai',
-      state: 'Maharashtra',
-      country: 'India',
-      pincode: '400088',
+      fullName: '',
+      phone: '',
+      address: '',
+      city: '',
+      state: '',
+      country: '',
+      pincode: '',
       paymentMethod: 'cod',
     },
     validationSchema,
