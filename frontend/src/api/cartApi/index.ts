@@ -1,6 +1,6 @@
 import { axios } from '../../hooks/useAxiosInterceptor';
 import { API } from '../../utils/constants';
-import type { AddToCartPayload, AddToCartResponse, ApiResponse, CartResponse, RemoveCartItemResponse } from '../types';
+import type { AddToCartPayload, AddToCartResponse, ApiResponse, CartResponse } from '../types';
 
 const cartApi = {
   getCart() {
@@ -10,7 +10,7 @@ const cartApi = {
     return axios.post<ApiResponse<AddToCartResponse>>(API.CART_ADD, payload);
   },
   removeItemFromCart(productId: string) {
-    return axios.delete<RemoveCartItemResponse>(`${API.CART_REMOVE}/${productId}`);
+    return axios.delete<ApiResponse<CartResponse[]>>(`${API.CART_REMOVE}/${productId}`);
   },
 };
 

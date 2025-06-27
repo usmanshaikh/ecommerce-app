@@ -36,6 +36,6 @@ export const removeItem = catchAsync(async (req: Request, res: Response) => {
     res,
     statusCode: StatusCodes.OK,
     message: MESSAGES.CART_ITEM_REMOVED,
-    data: cart,
+    data: cart?.items || [],
   });
 });

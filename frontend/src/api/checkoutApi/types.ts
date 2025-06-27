@@ -1,5 +1,12 @@
-export interface OrderItem {
+import type { Product } from '../types';
+
+export interface StripeOrderItem {
   product: string;
+  price: number;
+  quantity: number;
+}
+export interface OrderItem {
+  product: Product;
   price: number;
   quantity: number;
 }
@@ -13,7 +20,7 @@ export interface Address {
 }
 
 export interface StripeSessionPayload {
-  items: OrderItem[];
+  items: StripeOrderItem[];
   address: Address;
   totalAmount: number;
   paymentMethod: string;

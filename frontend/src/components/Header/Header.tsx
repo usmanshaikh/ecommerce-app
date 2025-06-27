@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useState, type MouseEvent } from 'react';
 import {
   AppBar,
   Box,
@@ -20,8 +20,10 @@ import { Menu as MenuIcon, PersonOutlineOutlined, ShoppingCartOutlined, Favorite
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '@utils/constants';
 import type { RootState } from '@store';
-import { useAppSelector } from '@hooks';
+import { useAppDispatch, useAppSelector } from '@hooks';
 import Images from '@assets/img';
+import { cartApi } from '@api';
+import { setCartCount } from '@store/slices';
 import './Header.scss';
 
 interface Props {
@@ -32,19 +34,20 @@ const drawerWidth = 240;
 
 const Header = (props: Props) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { isLoggedIn } = useAppSelector((state: RootState) => state.auth);
   const { count: cartCount } = useAppSelector((state: RootState) => state.cart);
   const { count: wishlistCount } = useAppSelector((state: RootState) => state.wishlist);
 
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
 
@@ -61,6 +64,17 @@ const Header = (props: Props) => {
     navigate(`/${ROUTES.LOGIN}`);
     handleCloseUserMenu();
   };
+
+  const getCartCount = async () => {
+    const cartRes = await cartApi.getCart();
+    const items = cartRes.data.data;
+    const count = items.reduce((total: number, item: any) => total + item.quantity, 0);
+    dispatch(setCartCount(count));
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) getCartCount();
+  }, [isLoggedIn]);
 
   const container = window !== undefined ? () => window().document.body : undefined;
 

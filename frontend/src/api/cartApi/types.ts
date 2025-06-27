@@ -13,8 +13,6 @@ export interface CartData {
 
 export interface CartResponse extends CartItem {}
 
-export interface RemoveCartItemResponse extends CartData {}
-
 export interface AddToCartPayload {
   productId: string;
   quantity: number;

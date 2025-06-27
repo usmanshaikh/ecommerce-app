@@ -1,18 +1,12 @@
 import type { LoginResponse, RefreshResponse, RegisterResponse, RegisterPayload, LoginPayload } from './authApi/types';
-import type {
-  AddToCartPayload,
-  AddToCartResponse,
-  CartData,
-  CartItem,
-  CartResponse,
-  RemoveCartItemResponse,
-} from './cartApi/types';
+import type { AddToCartPayload, AddToCartResponse, CartData, CartItem, CartResponse } from './cartApi/types';
 import type {
   StripeSessionPayload,
   StripeSessionResponse,
   ConfirmOrderResponse,
   OrderItem,
   Address,
+  StripeOrderItem,
 } from './checkoutApi/types';
 import type { OrderResponse } from './orderApi/types';
 import type { Product, ProductResponse, CreateProductPayload, UploadProductImageResponse } from './productApi/types';
@@ -42,7 +36,6 @@ export type {
   RefreshResponse,
   // Cart
   CartResponse,
-  RemoveCartItemResponse,
   AddToCartPayload,
   AddToCartResponse,
   CartItem,
@@ -53,6 +46,7 @@ export type {
   ConfirmOrderResponse,
   OrderItem,
   Address,
+  StripeOrderItem,
   // Order
   OrderResponse,
   // Product

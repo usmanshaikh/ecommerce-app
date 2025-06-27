@@ -28,5 +28,8 @@ export const createOrderFromCheckout = async (checkout: any) => {
 };
 
 export const getOrdersByUser = async (userId: string) => {
-  return await Order.find({ user: userId }).sort({ createdAt: -1 });
+  return await Order.find({ user: userId }).sort({ createdAt: -1 }).populate({
+    path: 'items.product',
+    select: '_id name description price images',
+  });
 };
