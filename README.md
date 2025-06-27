@@ -10,7 +10,7 @@
 - 🛒 Cart and Wishlist functionality
 - 💳 Stripe-based secure checkout
 - 📱 Mobile responsive design
-- 📷 Image support (JPG, WebP, AVIF)
+- 📷 Image support
 - 🔍 Product filters and search
 - 📤 Admin: Add/Edit Products
 
